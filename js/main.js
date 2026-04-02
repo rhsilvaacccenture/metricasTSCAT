@@ -27,6 +27,21 @@ document.addEventListener('keydown', (e) => {
 // Init
 document.getElementById('prev').disabled = true;
 
+// ── Fullscreen ──
+function toggleFullscreen() {
+  const frame = document.getElementById('frame');
+  const btn   = document.getElementById('fsBtn');
+  if (!document.fullscreenElement) {
+    frame.requestFullscreen().catch(() => {});
+  } else {
+    document.exitFullscreen();
+  }
+}
+document.addEventListener('fullscreenchange', () => {
+  const btn = document.getElementById('fsBtn');
+  btn.textContent = document.fullscreenElement ? '✕ Exit Fullscreen' : '⛶ Fullscreen';
+});
+
 // ── PPTX Export ──
 function downloadPptx() {
   const pptx = new PptxGenJS();

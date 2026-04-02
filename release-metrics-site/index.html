@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Release Performance Metrics – Accenture/CTTI</title>
+  <link rel="stylesheet" href="css/styles.css"/>
+</head>
+<body>
+
+<div id="slide-label">Slide <span id="snum">1</span> / 8 — <strong id="stitle">Cover</strong></div>
+
+<div id="controls">
+  <button class="nav" id="prev" onclick="go(-1)">← Prev</button>
+  <button onclick="goTo(0)" class="active">Cover</button>
+  <button onclick="goTo(1)">Summary</button>
+  <button onclick="goTo(2)">R1</button>
+  <button onclick="goTo(3)">R2</button>
+  <button onclick="goTo(4)">R3</button>
+  <button onclick="goTo(5)">Consolidated</button>
+  <button onclick="goTo(6)">Notes</button>
+  <button onclick="goTo(7)">Gràcies</button>
+  <button class="nav" id="next" onclick="go(1)">Next →</button>
+</div>
+
+<div id="frame">
+
+  <!-- ── SLIDE 0: COVER ── -->
+  <div class="slide cover active" id="s0">
+    <div class="top-bar"></div>
+    <div class="body">
+      <h1>Release Performance<br>Metrics Report</h1>
+      <div class="sub">R1 · R2 · R3 — Estimated vs. Actual Effort Analysis</div>
+      <div class="meta">Extraction date: January 27, 2025 · Data subject to update</div>
+      <div class="meta" style="margin-top:4px;">Accenture</div>
+    </div>
+    <div class="watermark">
+      <svg width="320" height="380" viewBox="0 0 34 40"><path d="M0 0 L34 20 L0 40 L0 32 L22 20 L0 8 Z" fill="#7B2D8B"/></svg>
+    </div>
+    <footer>
+      <div class="brand">
+        <svg width="20" height="24" viewBox="0 0 34 40"><path d="M0 0 L34 20 L0 40 L0 32 L22 20 L0 8 Z" fill="#7B2D8B"/></svg>
+        <div style="width:1px;height:28px;background:#E5E7EB;"></div>
+        <div>Generalitat de Catalunya<br><strong>Centre de Telecomunicacions i Tecnologies de la Informació</strong></div>
+      </div>
+      <span class="copy">Copyright © 2025 Accenture. All rights reserved.</span>
+    </footer>
+  </div>
+
+  <!-- ── SLIDE 1: SUMMARY ── -->
+  <div class="slide" id="s1">
+    <div class="sec-header">
+      <h2>Executive Summary</h2>
+      <div class="sec-sub">Consolidated results across R1 + R2 + R3</div>
+    </div>
+    <div class="content">
+      <div class="metrics">
+        <div class="metric"><div class="mlabel">Total Estimated</div><div class="mval">7,337.9h</div></div>
+        <div class="metric"><div class="mlabel">Total Spent</div><div class="mval">6,965.0h</div></div>
+        <div class="metric"><div class="mlabel">Deviation</div><div class="mval">+372.9h</div></div>
+        <div class="metric hi"><div class="mlabel">Saving (raw)</div><div class="mval">+5%</div></div>
+        <div class="metric hi"><div class="mlabel">Saving excl. UAT R1</div><div class="mval">+34%</div></div>
+      </div>
+      <table>
+        <thead>
+          <tr><th>Release</th><th>Estimated (h)</th><th>Spent (h)</th><th>Deviation (h)</th><th>% Saving</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>R1 – Completed (raw)</td><td>2,347.5</td><td>4,183.0</td><td class="neg">-1,835.5</td><td class="neg">-78%</td></tr>
+          <tr><td>R1 – Completed (excl. UAT R1)</td><td>2,347.5</td><td>2,072.0</td><td class="pos">+275.5</td><td class="pos">+12%</td></tr>
+          <tr><td>R2 – Completed</td><td>2,315.3</td><td>1,611.0</td><td class="pos">+704.3</td><td class="pos">+30%</td></tr>
+          <tr><td>R3 – In Progress *</td><td>2,674.4</td><td>1,171.0</td><td class="pos">+1,503.4</td><td class="pos">+56%</td></tr>
+        </tbody>
+      </table>
+      <div class="note"><span>*</span><span>R3 still in progress — 2 USs under technical revision, 5 in functional analysis. Final figures may vary.</span></div>
+    </div>
+    <div class="foot">
+      <div class="fl"><svg width="14" height="17" viewBox="0 0 34 40"><path d="M0 0 L34 20 L0 40 L0 32 L22 20 L0 8 Z" fill="#7B2D8B"/></svg><span>Copyright © 2025 Accenture. All rights reserved.</span></div>
+      <span class="fr">1</span>
+    </div>
+  </div>
+
+  <!-- ── SLIDE 2: R1 ── -->
+  <div class="slide" id="s2">
+    <div class="sec-header">
+      <h2>R1 — Release 1</h2>
+      <div class="sec-sub">Completed · UAT R1 included</div>
+    </div>
+    <div class="content">
+      <div class="metrics">
+        <div class="metric"><div class="mlabel">Total Estimated</div><div class="mval">2,347.5h</div></div>
+        <div class="metric"><div class="mlabel">Total Spent (raw)</div><div class="mval">4,183.0h</div></div>
+        <div class="metric"><div class="mlabel">Spent excl. UAT R1</div><div class="mval">2,072.0h</div></div>
+        <div class="metric hi"><div class="mlabel">Saving excl. UAT</div><div class="mval">+12%</div></div>
+        <div class="metric hi"><div class="mlabel">UAT R1 Total Hours</div><div class="mval">2,111.0h</div></div>
+      </div>
+      <table>
+        <thead>
+          <tr><th>Area</th><th>Estimated (h)</th><th>Spent (h)</th><th>Deviation (h)</th><th>% Saving</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Analysis &amp; DF</td><td>151.5</td><td>119.5</td><td class="pos">+32.0</td><td class="pos">+21%</td></tr>
+          <tr><td>DT / Const ⚠️</td><td>1,515.0</td><td>3,183.0</td><td class="neg">-1,668.0</td><td class="neg">-110%</td></tr>
+          <tr><td>Testing</td><td>530.3</td><td>404.0</td><td class="pos">+126.3</td><td class="pos">+24%</td></tr>
+          <tr><td>Deploy</td><td>75.75</td><td>0</td><td class="pos">+75.75</td><td class="pos">+100%</td></tr>
+          <tr><td>Production</td><td>75.75</td><td>42.0</td><td class="pos">+33.75</td><td class="pos">+45%</td></tr>
+          <tr><td>Management</td><td>0</td><td>434.5</td><td class="neg">-434.5</td><td>—</td></tr>
+          <tr><td>TOTAL</td><td>2,347.5</td><td>4,183.0</td><td class="neg">-1,835.5</td><td>-78% raw / +12% excl. UAT</td></tr>
+        </tbody>
+      </table>
+      <div class="note"><span>⚠️</span><span>DT hours (3,183h) include 2,111h of UAT R1: technical debt from previous UATs + UAT from December + R2 UAT hours logged here due to R2 ticket not being created in time. UAT R1: Est. 1,515h · Spent 1,072h · Saving +443h (+29%).</span></div>
+    </div>
+    <div class="foot">
+      <div class="fl"><svg width="14" height="17" viewBox="0 0 34 40"><path d="M0 0 L34 20 L0 40 L0 32 L22 20 L0 8 Z" fill="#7B2D8B"/></svg><span>Copyright © 2025 Accenture. All rights reserved.</span></div>
+      <span class="fr">2</span>
+    </div>
+  </div>
+
+  <!-- ── SLIDE 3: R2 ── -->
+  <div class="slide" id="s3">
+    <div class="sec-header">
+      <h2>R2 — Release 2</h2>
+      <div class="sec-sub">Completed</div>
+    </div>
+    <div class="content">
+      <div class="metrics">
+        <div class="metric"><div class="mlabel">Total Estimated</div><div class="mval">2,315.3h</div></div>
+        <div class="metric"><div class="mlabel">Total Spent</div><div class="mval">1,611.0h</div></div>
+        <div class="metric"><div class="mlabel">Deviation</div><div class="mval">+704.3h</div></div>
+        <div class="metric hi"><div class="mlabel">% Saving</div><div class="mval">+30%</div></div>
+      </div>
+      <table>
+        <thead>
+          <tr><th>Area</th><th>Estimated (h)</th><th>Spent (h)</th><th>Deviation (h)</th><th>% Saving</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Analysis &amp; DF</td><td>220.5</td><td>215.5</td><td class="pos">+5.0</td><td class="pos">+2%</td></tr>
+          <tr><td>DT / Const ⚠️</td><td>1,102.5</td><td>498.0</td><td class="pos">+604.5</td><td class="pos">+55%</td></tr>
+          <tr><td>Testing</td><td>771.8</td><td>643.5</td><td class="pos">+128.3</td><td class="pos">+17%</td></tr>
+          <tr><td>Deploy</td><td>110.25</td><td>0</td><td class="pos">+110.25</td><td class="pos">+100%</td></tr>
+          <tr><td>Production</td><td>110.25</td><td>88.0</td><td class="pos">+22.25</td><td class="pos">+20%</td></tr>
+          <tr><td>Management</td><td>0</td><td>166.0</td><td class="neg">-166.0</td><td>—</td></tr>
+          <tr><td>TOTAL</td><td>2,315.3</td><td>1,611.0</td><td class="pos">+704.3</td><td class="pos">+30%</td></tr>
+        </tbody>
+      </table>
+      <div class="note"><span>⚠️</span><span>R2 DT/Const estimation was duplicated. Only DT effort was considered in the estimated figure. Real spent cost reflects both DT and Const actual hours combined.</span></div>
+    </div>
+    <div class="foot">
+      <div class="fl"><svg width="14" height="17" viewBox="0 0 34 40"><path d="M0 0 L34 20 L0 40 L0 32 L22 20 L0 8 Z" fill="#7B2D8B"/></svg><span>Copyright © 2025 Accenture. All rights reserved.</span></div>
+      <span class="fr">3</span>
+    </div>
+  </div>
+
+  <!-- ── SLIDE 4: R3 ── -->
+  <div class="slide" id="s4">
+    <div class="sec-header">
+      <h2>R3 — Release 3</h2>
+      <div class="sec-sub">🔄 In Progress</div>
+    </div>
+    <div class="content">
+      <div class="metrics">
+        <div class="metric"><div class="mlabel">Total Estimated</div><div class="mval">2,674.4h</div></div>
+        <div class="metric"><div class="mlabel">Spent So Far</div><div class="mval">1,171.0h</div></div>
+        <div class="metric"><div class="mlabel">Deviation (partial)</div><div class="mval">+1,503.4h</div></div>
+        <div class="metric hi"><div class="mlabel">% Saving (partial)</div><div class="mval">+56%</div></div>
+      </div>
+      <table>
+        <thead>
+          <tr><th>Area</th><th>Estimated (h)</th><th>Spent (h)</th><th>Deviation (h)</th><th>% Saving</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Analysis &amp; DF</td><td>494.8</td><td>373.0</td><td class="pos">+121.8</td><td class="pos">+25%</td></tr>
+          <tr><td>DT / Const</td><td>655.2</td><td>264.5</td><td class="pos">+390.7</td><td class="pos">+60%</td></tr>
+          <tr><td>Testing</td><td>989.6</td><td>221.5</td><td class="pos">+768.1</td><td class="pos">+78%</td></tr>
+          <tr><td>Deploy</td><td>0</td><td>0</td><td>0</td><td>—</td></tr>
+          <tr><td>Production</td><td>494.8</td><td>23.0</td><td class="pos">+471.8</td><td class="pos">+95%</td></tr>
+          <tr><td>Management</td><td>40.0</td><td>289.0</td><td class="neg">-249.0</td><td class="neg">-623%</td></tr>
+          <tr><td>TOTAL</td><td>2,674.4</td><td>1,171.0</td><td class="pos">+1,503.4</td><td class="pos">+56%</td></tr>
+        </tbody>
+      </table>
+      <div class="note"><span>⚠️</span><span>R3 is still ongoing. 2 User Stories are currently under technical revision and 5 are in functional analysis with no estimated values yet. Final metrics will be updated in the next extraction cycle.</span></div>
+    </div>
+    <div class="foot">
+      <div class="fl"><svg width="14" height="17" viewBox="0 0 34 40"><path d="M0 0 L34 20 L0 40 L0 32 L22 20 L0 8 Z" fill="#7B2D8B"/></svg><span>Copyright © 2025 Accenture. All rights reserved.</span></div>
+      <span class="fr">4</span>
+    </div>
+  </div>
+
+  <!-- ── SLIDE 5: CONSOLIDATED ── -->
+  <div class="slide" id="s5">
+    <div class="sec-header">
+      <h2>R1 + R2 + R3 — Consolidated View</h2>
+      <div class="sec-sub">Combined effort across all releases</div>
+    </div>
+    <div class="content">
+      <div class="metrics">
+        <div class="metric"><div class="mlabel">Total Estimated</div><div class="mval">7,337.9h</div></div>
+        <div class="metric"><div class="mlabel">Total Spent</div><div class="mval">6,965.0h</div></div>
+        <div class="metric hi"><div class="mlabel">Saving (raw)</div><div class="mval">+5%</div></div>
+        <div class="metric hi"><div class="mlabel">Saving excl. UAT R1</div><div class="mval">+34%</div></div>
+      </div>
+      <table>
+        <thead>
+          <tr><th>Area</th><th>Estimated (h)</th><th>Spent (h)</th><th>Deviation (h)</th><th>% Saving</th><th>% w/ UAT R1</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Analysis &amp; DF</td><td>866.8</td><td>708.0</td><td class="pos">+158.8</td><td class="pos">+16%</td><td>—</td></tr>
+          <tr><td>DT / Const ⚠️</td><td>3,272.7</td><td>3,945.5</td><td class="neg">-672.8</td><td class="pos">+48%</td><td class="pos">+1%</td></tr>
+          <tr><td>Testing</td><td>2,291.6</td><td>1,269.0</td><td class="pos">+1,022.6</td><td class="pos">+39%</td><td>—</td></tr>
+          <tr><td>Deploy</td><td>186.0</td><td>0.0</td><td class="pos">+186.0</td><td class="pos">+100%</td><td>—</td></tr>
+          <tr><td>Production</td><td>680.8</td><td>153.0</td><td class="pos">+527.8</td><td class="pos">+53%</td><td>—</td></tr>
+          <tr><td>Management</td><td>40.0</td><td>889.5</td><td class="neg">-849.5</td><td>—</td><td>—</td></tr>
+          <tr><td>TOTAL</td><td>7,337.9</td><td>6,965.0</td><td class="pos">+372.9</td><td>+5% raw</td><td>+34% excl. UAT R1</td></tr>
+        </tbody>
+      </table>
+      <div class="note"><span>*</span><span>Saving excl. UAT R1 = 1-(4,854h/7,337.9h) where 4,854h = total spent (6,965h) minus UAT R1 hours (2,111h).</span></div>
+    </div>
+    <div class="foot">
+      <div class="fl"><svg width="14" height="17" viewBox="0 0 34 40"><path d="M0 0 L34 20 L0 40 L0 32 L22 20 L0 8 Z" fill="#7B2D8B"/></svg><span>Copyright © 2025 Accenture. All rights reserved.</span></div>
+      <span class="fr">5</span>
+    </div>
+  </div>
+
+  <!-- ── SLIDE 6: NOTES ── -->
+  <div class="slide" id="s6">
+    <div class="sec-header">
+      <h2>Notes &amp; Clarifications</h2>
+      <div class="sec-sub">Context for accurate interpretation of the metrics</div>
+    </div>
+    <div class="content">
+      <div class="note-item">
+        <span class="ni-icon">📌</span>
+        <div>
+          <div class="ni-title">Data Extraction Date</div>
+          <div class="ni-text">Metrics extracted on Friday, January 27th. Subsequent ALMA reporting may show updated figures. This report reflects a snapshot subject to change in the next cycle.</div>
+        </div>
+      </div>
+      <div class="note-item">
+        <span class="ni-icon">✖️</span>
+        <div>
+          <div class="ni-title">Estimation Methodology – x4 Factor</div>
+          <div class="ni-text">All total estimations include a 4x multiplication factor applied to the base technical estimation. E.g. if a US is technically estimated at 10h, the total estimation used is 40h, accounting for full delivery effort across all areas.</div>
+        </div>
+      </div>
+      <div class="note-item">
+        <span class="ni-icon">⚠️</span>
+        <div>
+          <div class="ni-title">R1 – DT Hours &amp; UAT R1</div>
+          <div class="ni-text">DT hours in R1 (3,183h) include 2,111h of UAT R1: (1) technical debt from previous UATs + UAT from December, and (2) R2 UAT hours logged here because the R2 ticket hadn't been created and ALMA UAT reporting wasn't aligned with the team.</div>
+        </div>
+      </div>
+      <div class="note-item">
+        <span class="ni-icon">⚠️</span>
+        <div>
+          <div class="ni-title">R2 – DT/Const Estimation</div>
+          <div class="ni-text">R2 DT and Const estimation was duplicated. Only DT effort was used as the estimated figure. Real spent cost reflects both DT and Const actual hours.</div>
+        </div>
+      </div>
+      <div class="note-item">
+        <span class="ni-icon">🔄</span>
+        <div>
+          <div class="ni-title">R3 – Still In Progress</div>
+          <div class="ni-text">2 USs are under technical revision and 5 are in functional analysis with no estimated values. These will be incorporated once complete.</div>
+        </div>
+      </div>
+    </div>
+    <div class="foot">
+      <div class="fl"><svg width="14" height="17" viewBox="0 0 34 40"><path d="M0 0 L34 20 L0 40 L0 32 L22 20 L0 8 Z" fill="#7B2D8B"/></svg><span>Copyright © 2025 Accenture. All rights reserved.</span></div>
+      <span class="fr">6</span>
+    </div>
+  </div>
+
+  <!-- ── SLIDE 7: GRÀCIES ── -->
+  <div class="slide gracies" id="s7">
+    <h1>Gràcies</h1>
+    <div class="wm1"><svg width="420" height="500" viewBox="0 0 34 40"><path d="M0 0 L34 20 L0 40 L0 32 L22 20 L0 8 Z" fill="#fff"/></svg></div>
+    <div class="wm2"><svg width="260" height="310" viewBox="0 0 34 40"><path d="M0 0 L34 20 L0 40 L0 32 L22 20 L0 8 Z" fill="none" stroke="#fff" stroke-width="1.5"/></svg></div>
+  </div>
+
+</div>
+
+<div id="kb-hint">Use ← → arrow keys to navigate</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>

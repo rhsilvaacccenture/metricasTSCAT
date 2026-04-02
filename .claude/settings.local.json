@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cmd.exe /c \"dir \"\"C:\\\\Users\\\\r.h.silva\\\\OneDrive - Accenture\\\\Desktop\\\\CTTI\\\\ALMA\\\\produtividade\"\"\")",
+      "Bash(netlify --version)",
+      "Bash(vercel --version)",
+      "mcp__Claude_in_Chrome__tabs_context_mcp",
+      "Bash(npm --version)",
+      "Bash(curl --version)",
+      "Bash(powershell.exe -Command \"Get-Command curl, node, npm, python, npx 2>&1 | Select-Object Name, Source\")",
+      "Bash(powershell.exe -Command \"winget --version\")",
+      "Bash(powershell.exe -Command \"choco --version\")",
+      "Bash(powershell.exe -Command \"scoop --version\")",
+      "Bash(powershell.exe -Command \"winget install OpenJS.NodeJS.LTS --silent --accept-package-agreements --accept-source-agreements\")",
+      "Bash(powershell.exe -Command \"node --version; npx --version\")",
+      "Bash(powershell.exe -Command '$env:PATH = [System.Environment]::GetEnvironmentVariable\\(\"\"PATH\"\",\"\"Machine\"\"\\) + \"\";\"\" + [System.Environment]::GetEnvironmentVariable\\(\"\"PATH\"\",\"\"User\"\"\\); node --version; npx --version')",
+      "Bash(powershell.exe -Command ':*)",
+      "mcp__Claude_in_Chrome__navigate",
+      "Bash(powershell.exe -Command 'Start-Sleep -Seconds 5; Get-Content \"\"$env:TEMP\\\\lt_out.txt\"\" -ErrorAction SilentlyContinue')",
+      "Bash(powershell.exe -Command \"ssh -V 2>&1\")",
+      "Bash(powershell.exe -Command 'Get-Content \"\"C:\\\\Users\\\\RH5932~1.SIL\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\C--Users-r-h-silva-OneDrive---Accenture-Documents-Git\\\\0d5f5660-0f0f-4914-b9a7-0cc7863daedd\\\\tasks\\\\b0nkmj6rg.output\"\" -ErrorAction SilentlyContinue')",
+      "Bash(git --version)",
+      "Bash(git config:*)"
+    ]
+  }
+}

@@ -102,7 +102,7 @@ function downloadPptx() {
   s0.addShape(pptx.ShapeType.rect, { x: 0, y: 0, w: '100%', h: 0.09, fill: { color: PURPLE } });
   s0.addText('Release Performance\nMetrics Report', { x: 0.8, y: 1.1, w: 6, h: 1.6, fontSize: 32, bold: true, color: BLACK, breakLine: true });
   s0.addText('R1 · R2 · R3 — Estimated vs. Actual Effort Analysis', { x: 0.8, y: 2.8, w: 7, h: 0.35, fontSize: 14, bold: true, color: PURPLE });
-  s0.addText('Extraction date: January 27, 2025 · Data subject to update', { x: 0.8, y: 3.22, w: 7, h: 0.28, fontSize: 11, color: GRAY });
+  s0.addText('Extraction date: March 24, 2026 · Data subject to update', { x: 0.8, y: 3.22, w: 7, h: 0.28, fontSize: 11, color: GRAY });
   s0.addText('Accenture', { x: 0.8, y: 3.52, w: 7, h: 0.28, fontSize: 11, color: GRAY });
   s0.addShape(pptx.ShapeType.rect, { x: 0, y: 5.05, w: '100%', h: 0.01, fill: { color: MID } });
   s0.addText('Generalitat de Catalunya · Centre de Telecomunicacions i Tecnologies de la Informació', { x: 0.3, y: 5.1, w: 7, h: 0.28, fontSize: 8, color: GRAY });

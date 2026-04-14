@@ -1,3 +1,22 @@
+// ── Password protection ──
+(function(){
+  if(sessionStorage.getItem('alma_auth') === '1') {
+    document.getElementById('pw-overlay').classList.add('hidden');
+  }
+})();
+
+function checkPw(){
+  const val = document.getElementById('pw-input').value;
+  if(val === 'ALMA2026'){
+    sessionStorage.setItem('alma_auth','1');
+    document.getElementById('pw-overlay').classList.add('hidden');
+  } else {
+    document.getElementById('pw-error').textContent = 'Incorrect password. Try again.';
+    document.getElementById('pw-input').value = '';
+    document.getElementById('pw-input').focus();
+  }
+}
+
 const titles = ["Cover", "Summary", "R1", "R2", "R3", "Consolidated", "Notes", "Gràcies"];
 const TOTAL = titles.length;
 let cur = 0;

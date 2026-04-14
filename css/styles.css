@@ -94,3 +94,15 @@ tbody tr:last-child td{background:var(--mid);font-weight:700;}
 
 /* ── Keyboard hint ── */
 #kb-hint{font-size:10px;color:#555;margin-top:8px;}
+
+/* ── Password overlay ── */
+#pw-overlay{position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;z-index:9999;}
+#pw-overlay.hidden{display:none;}
+#pw-box{background:#fff;border-radius:10px;padding:40px 48px;display:flex;flex-direction:column;align-items:center;gap:14px;box-shadow:0 20px 60px rgba(0,0,0,.5);max-width:340px;width:90%;}
+#pw-box h2{font-size:16px;font-weight:900;color:#000;text-align:center;}
+#pw-box p{font-size:11px;color:var(--gray);margin-top:-8px;}
+#pw-input{width:100%;padding:10px 14px;border:1.5px solid var(--mid);border-radius:6px;font-size:13px;font-family:inherit;outline:none;}
+#pw-input:focus{border-color:var(--purple);}
+#pw-box button{width:100%;padding:10px;background:var(--purple);color:#fff;border:none;border-radius:6px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;}
+#pw-box button:hover{background:var(--purple-dark);}
+#pw-error{font-size:11px;color:var(--red);min-height:14px;}

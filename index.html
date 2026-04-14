@@ -9,6 +9,18 @@
 </head>
 <body>
 
+<!-- PASSWORD OVERLAY -->
+<div id="pw-overlay">
+  <div id="pw-box">
+    <svg width="36" height="43" viewBox="0 0 34 40"><path d="M0 0 L34 20 L0 40 L0 32 L22 20 L0 8 Z" fill="#7B2D8B"/></svg>
+    <h2>Release Performance Metrics</h2>
+    <p>Accenture · CTTI</p>
+    <input type="password" id="pw-input" placeholder="Enter password" onkeydown="if(event.key==='Enter')checkPw()"/>
+    <button onclick="checkPw()">Access</button>
+    <span id="pw-error"></span>
+  </div>
+</div>
+
 <div id="slide-label">Slide <span id="snum">1</span> / 8 — <strong id="stitle">Cover</strong></div>
 
 <div id="controls">

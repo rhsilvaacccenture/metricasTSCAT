@@ -140,15 +140,7 @@ function downloadPptx() {
   // Subtitle
   s0.addText('R1\u2013R3 Actuals \u00B7 R4\u2013R6 Projections', { x: 0.55, y: 3.06, w: 6.8, h: 0.26, fontSize: 11, bold: true, color: 'D9C0E8' });
   // Meta
-  s0.addText('Extraction date: March 24, 2026 \u00B7 Data subject to update', { x: 0.55, y: 3.38, w: 6.8, h: 0.2, fontSize: 8.5, color: 'A888BB' });
-
-  // Badges
-  s0.addShape(pptx.ShapeType.roundRect, { x: 0.55, y: 3.74, w: 2.1, h: 0.3, fill: { color: '5C2270' }, line: { color: '9B5CB0' }, rectRadius: 0.15 });
-  s0.addText('+34% Saving excl. UAT R1', { x: 0.55, y: 3.74, w: 2.1, h: 0.3, fontSize: 7.5, bold: true, color: WHITE, align: 'center', valign: 'middle' });
-  s0.addShape(pptx.ShapeType.roundRect, { x: 2.78, y: 3.74, w: 2.15, h: 0.3, fill: { color: '5C2270' }, line: { color: '9B5CB0' }, rectRadius: 0.15 });
-  s0.addText('~2,950h Projected R4\u2013R6', { x: 2.78, y: 3.74, w: 2.15, h: 0.3, fontSize: 7.5, bold: true, color: WHITE, align: 'center', valign: 'middle' });
-  s0.addShape(pptx.ShapeType.roundRect, { x: 5.06, y: 3.74, w: 1.85, h: 0.3, fill: { color: '5C2270' }, line: { color: '9B5CB0' }, rectRadius: 0.15 });
-  s0.addText('3 Releases Analysed', { x: 5.06, y: 3.74, w: 1.85, h: 0.3, fontSize: 7.5, bold: true, color: WHITE, align: 'center', valign: 'middle' });
+  s0.addText('Extraction date: April 14, 2026', { x: 0.55, y: 3.38, w: 6.8, h: 0.2, fontSize: 8.5, color: 'A888BB' });
 
   // Footer separator
   s0.addShape(pptx.ShapeType.rect, { x: 0, y: 5.0, w: 10, h: 0.015, fill: { color: '9B5CB0' } });
@@ -164,22 +156,22 @@ function downloadPptx() {
   const s1 = pptx.addSlide();
   addHeader(s1, 'Executive Summary', 'Consolidated results across R1 + R2 + R3');
   addMetrics(s1, [
-    { label: 'Total Estimated', value: '7,337.9h' },
-    { label: 'Total Spent', value: '6,965.0h' },
-    { label: 'Deviation', value: '+372.9h' },
-    { label: 'Saving (raw)', value: '+5%', hi: true },
-    { label: 'Saving excl. UAT R1', value: '+34%', hi: true }
+    { label: 'Total Estimated', value: '6,773.3h' },
+    { label: 'Total Spent', value: '7,099.5h' },
+    { label: 'Deviation', value: '-326.2h' },
+    { label: 'Saving (raw)', value: '-5%', hi: true },
+    { label: 'Saving excl. UAT R1', value: '+27%', hi: true }
   ], 0.82);
   addTable(s1,
     ['Release', 'Estimated (h)', 'Spent (h)', 'Deviation (h)', '% Saving'],
     [
-      ['R1 – Completed (raw)',          '2,347.5', '4,183.0', '-1,835.5', '-78%'],
-      ['R1 – Completed (excl. UAT R1)', '2,347.5', '2,072.0', '+275.5',   '+12%'],
-      ['R2 – Completed',                '2,315.3', '1,611.0', '+704.3',   '+30%'],
-      ['R3 – In Progress *',            '2,674.4', '1,171.0', '+1,503.4', '+56%']
+      ['R1 – Completed (raw)',          '1,515.1', '4,192.0', '-2,676.9', '-177%'],
+      ['R1 – Completed (excl. UAT R1)', '1,515.1', '2,072.0', '-556.9',   '-37%'],
+      ['R2 – Completed',                '2,129.1', '1,629.0', '+500.1',   '+23%'],
+      ['R3 – Completed',                '3,129.2', '1,278.5', '+1,850.7', '+59%']
     ],
     1.7,
-    '* R3 still in progress — 2 USs under technical revision, 5 in functional analysis. Final figures may vary.'
+    'R3 completed April 2026 \u00B7 Best performing release at +59% \u00B7 Excl. UAT R1, overall saving across all releases is +27%.'
   );
   addFooter(s1, 1);
 
@@ -187,34 +179,34 @@ function downloadPptx() {
   const s2 = pptx.addSlide();
   addHeader(s2, 'R1 — Deep Dive \u00B7 Lessons Learned', 'Completed \u00B7 16 Dec 2025 \u2013 31 Jan 2026 \u00B7 UAT R1 included \u00B7 All estimates use x4 factor');
   addMetrics(s2, [
-    { label: 'Total Estimated',   value: '2,347.5h' },
-    { label: 'Total Spent (raw)', value: '4,183.0h' },
+    { label: 'Total Estimated',   value: '1,515.1h' },
+    { label: 'Total Spent (raw)', value: '4,192.0h' },
     { label: 'Spent excl. UAT R1', value: '2,072.0h' },
-    { label: 'Saving excl. UAT', value: '+12%', hi: true },
-    { label: 'UAT R1 Total Hours', value: '2,111.0h', hi: true }
+    { label: 'Saving excl. UAT', value: '-37%', hi: true },
+    { label: 'UAT R1 Total Hours', value: '2,120.0h', hi: true }
   ], 0.82);
   addTable(s2,
     ['Area', 'Estimated (h)', 'Spent (h)', 'Deviation (h)', '% Saving'],
     [
-      ['Analysis & DF', '151.5',   '119.5',   '+32.0',    '+21%'],
-      ['DT / Const',    '1,515.0', '3,183.0', '-1,668.0', '-110%'],
-      ['Testing',       '530.3',   '404.0',   '+126.3',   '+24%'],
-      ['Deploy',        '75.75',   '0',       '+75.75',   '+100%'],
-      ['Production',    '75.75',   '42.0',    '+33.75',   '+45%'],
-      ['Management',    '0',       '434.5',   '-434.5',   '—'],
-      ['TOTAL',         '2,347.5', '4,183.0', '-1,835.5', '-78% raw / +12% excl. UAT']
+      ['Analysis & DF', '151.5', '119.5',   '+32.0',    '+21%'],
+      ['DT / Const',    '757.5', '3,192.0', '-2,434.5', '-321%'],
+      ['Testing',       '530.3', '404.0',   '+126.3',   '+24%'],
+      ['Deploy',        '0',     '0',       '0',        '—'],
+      ['Production',    '75.75', '42.0',    '+33.75',   '+45%'],
+      ['Management',    '0',     '434.5',   '-434.5',   '—'],
+      ['TOTAL',         '1,515.1', '4,192.0', '-2,676.9', '-177% raw / -37% excl. UAT']
     ],
     1.7,
     null
   );
   // R1 note
   s2.addShape(pptx.ShapeType.rect, { x: 0.4, y: 3.72, w: 9.2, h: 0.3, fill: { color: 'F5F0F8' }, line: { color: PURPLE, width: 1.5 } });
-  s2.addText('\u26A0\uFE0F  DT hours (3,183h) include 2,111h of UAT R1: technical debt + UAT December + R2 UAT. UAT R1: Est. 1,515h \u00B7 Spent 1,072h \u00B7 Saving +443h (+29%).', { x: 0.55, y: 3.74, w: 8.9, h: 0.26, fontSize: 7.5, color: '333333' });
+  s2.addText('\u26A0\uFE0F  DT hours (3,192h) include 2,120h of UAT R1: technical debt + UAT December + R2 UAT. DT/Const excl. UAT: Est. 757.5h \u00B7 Spent 1,072h \u00B7 42% overrun even without UAT.', { x: 0.55, y: 3.74, w: 8.9, h: 0.26, fontSize: 7.5, color: '333333' });
   // R1 insight boxes
   s2.addShape(pptx.ShapeType.rect, { x: 0.4, y: 4.1, w: 4.5, h: 0.72, fill: { color: 'F0FDF4' }, line: { color: GREEN, width: 1.5 } });
   s2.addText('\uD83D\uDCA1', { x: 0.52, y: 4.16, w: 0.32, h: 0.28, fontSize: 12 });
   s2.addText('Key Insight', { x: 0.9, y: 4.13, w: 3.8, h: 0.2, fontSize: 9, bold: true, color: GREEN });
-  s2.addText('Without UAT burden, DT/Const was ~1,072h vs 1,515h estimated \u2014 revealing +29% real team efficiency.', { x: 0.9, y: 4.33, w: 3.8, h: 0.42, fontSize: 7.5, color: '14532D' });
+  s2.addText('With revised estimates, DT/Const (excl. UAT) spent 1,072h vs 757.5h estimated \u2014 a 42% overrun even without UAT. UAT alone added 2,120h of unplanned effort.', { x: 0.9, y: 4.33, w: 3.8, h: 0.42, fontSize: 7.5, color: '14532D' });
   s2.addShape(pptx.ShapeType.rect, { x: 5.1, y: 4.1, w: 4.5, h: 0.72, fill: { color: 'FFF7ED' }, line: { color: 'F97316', width: 1.5 } });
   s2.addText('\uD83D\uDEA9', { x: 5.22, y: 4.16, w: 0.32, h: 0.28, fontSize: 12 });
   s2.addText('Management Flag', { x: 5.6, y: 4.13, w: 3.8, h: 0.2, fontSize: 9, bold: true, color: 'F97316' });
@@ -225,33 +217,30 @@ function downloadPptx() {
   const s3 = pptx.addSlide();
   addHeader(s3, 'R2 — Deep Dive \u00B7 Efficiency Gains', 'Completed \u00B7 1 Feb \u2013 16 Feb 2026 \u00B7 Technical debt resolved \u00B7 Strongest DT/Const improvement');
   addMetrics(s3, [
-    { label: 'Total Estimated', value: '2,315.3h' },
-    { label: 'Total Spent',     value: '1,611.0h' },
-    { label: 'Deviation',       value: '+704.3h' },
-    { label: '% Saving',        value: '+30%', hi: true }
+    { label: 'Total Estimated', value: '2,129.1h' },
+    { label: 'Total Spent',     value: '1,629.0h' },
+    { label: 'Deviation',       value: '+500.1h' },
+    { label: '% Saving',        value: '+23%', hi: true }
   ], 0.82);
   addTable(s3,
     ['Area', 'Estimated (h)', 'Spent (h)', 'Deviation (h)', '% Saving'],
     [
-      ['Analysis & DF', '220.5',   '215.5', '+5.0',    '+2%'],
-      ['DT / Const',    '1,102.5', '498.0', '+604.5',  '+55%'],
-      ['Testing',       '771.8',   '643.5', '+128.3',  '+17%'],
-      ['Deploy',        '110.25',  '0',     '+110.25', '+100%'],
-      ['Production',    '110.25',  '88.0',  '+22.25',  '+20%'],
-      ['Management',    '0',       '166.0', '-166.0',  '—'],
-      ['TOTAL',         '2,315.3', '1,611.0', '+704.3', '+30%']
+      ['Analysis & DF', '220.5',   '215.5', '+5.0',   '+2%'],
+      ['DT / Const',    '1,026.5', '498.0', '+528.5', '+51%'],
+      ['Testing',       '771.8',   '661.5', '+110.3', '+14%'],
+      ['Deploy',        '0',       '0',     '0',      '—'],
+      ['Production',    '110.25',  '88.0',  '+22.25', '+20%'],
+      ['Management',    '0',       '166.0', '-166.0', '—'],
+      ['TOTAL',         '2,129.1', '1,629.0', '+500.1', '+23%']
     ],
     1.7,
     null
   );
-  // R2 note
-  s3.addShape(pptx.ShapeType.rect, { x: 0.4, y: 3.72, w: 9.2, h: 0.3, fill: { color: 'F5F0F8' }, line: { color: PURPLE, width: 1.5 } });
-  s3.addText('\u26A0\uFE0F  R2 DT/Const estimation was duplicated. Only DT effort was considered in the estimated figure. Real spent reflects both DT and Const hours.', { x: 0.55, y: 3.74, w: 8.9, h: 0.26, fontSize: 7.5, color: '333333' });
   // R2 insight boxes
   s3.addShape(pptx.ShapeType.rect, { x: 0.4, y: 4.1, w: 4.5, h: 0.72, fill: { color: 'F0FDF4' }, line: { color: GREEN, width: 1.5 } });
   s3.addText('\u2B50', { x: 0.52, y: 4.16, w: 0.32, h: 0.28, fontSize: 12 });
   s3.addText('DT/Const Breakthrough', { x: 0.9, y: 4.13, w: 3.8, h: 0.2, fontSize: 9, bold: true, color: GREEN });
-  s3.addText('With technical debt resolved, DT/Const achieved +55% saving \u2014 strongest area improvement, confirming growing velocity.', { x: 0.9, y: 4.33, w: 3.8, h: 0.42, fontSize: 7.5, color: '14532D' });
+  s3.addText('With technical debt resolved, DT/Const achieved +51% saving \u2014 strongest area improvement, confirming growing velocity.', { x: 0.9, y: 4.33, w: 3.8, h: 0.42, fontSize: 7.5, color: '14532D' });
   s3.addShape(pptx.ShapeType.rect, { x: 5.1, y: 4.1, w: 4.5, h: 0.72, fill: { color: 'F0FDF4' }, line: { color: GREEN, width: 1.5 } });
   s3.addText('\uD83D\uDCC9', { x: 5.22, y: 4.16, w: 0.32, h: 0.28, fontSize: 12 });
   s3.addText('Management Maturing', { x: 5.6, y: 4.13, w: 3.8, h: 0.2, fontSize: 9, bold: true, color: GREEN });
@@ -260,93 +249,104 @@ function downloadPptx() {
 
   // ── Slide 4: R3 ──
   const s4 = pptx.addSlide();
-  addHeader(s4, 'R3 — Status \u00B7 In Progress', '17 Feb \u2013 6 Apr 2026 \u00B7 Partial data \u00B7 March 24, 2026 extraction');
+  addHeader(s4, 'R3 — Deep Dive \u00B7 Completed', 'Completed \u00B7 17 Feb \u2013 6 Apr 2026 \u00B7 April 2026 extraction');
   addMetrics(s4, [
-    { label: 'Total Estimated',    value: '2,674.4h' },
-    { label: 'Spent So Far',       value: '1,171.0h' },
-    { label: 'Deviation (partial)', value: '+1,503.4h' },
-    { label: '% Saving (partial)', value: '+56%', hi: true }
+    { label: 'Total Estimated', value: '3,129.2h' },
+    { label: 'Total Spent',     value: '1,278.5h' },
+    { label: 'Hours Saved',     value: '1,850.7h' },
+    { label: 'Overall Saving',  value: '+59%', hi: true },
+    { label: 'DT/Const Saving', value: '+56%', hi: true }
   ], 0.82);
   addTable(s4,
     ['Area', 'Estimated (h)', 'Spent (h)', 'Deviation (h)', '% Saving'],
     [
-      ['Analysis & DF', '494.8', '373.0', '+121.8',   '+25%'],
-      ['DT / Const',    '655.2', '264.5', '+390.7',   '+60%'],
-      ['Testing',       '989.6', '221.5', '+768.1',   '+78%'],
-      ['Deploy',        '0',     '0',     '0',         '—'],
-      ['Production',    '494.8', '23.0',  '+471.8',   '+95%'],
-      ['Management',    '40.0',  '289.0', '-249.0',   '-623%'],
-      ['TOTAL',         '2,674.4', '1,171.0', '+1,503.4', '+56%']
-    ],
-    1.7,
-    'R3 is still ongoing. 2 USs under technical revision and 5 in functional analysis with no estimated values yet.'
-  );
-  addFooter(s4, 4);
-
-  // ── Slide 5: Consolidated ──
-  const s5 = pptx.addSlide();
-  addHeader(s5, 'R1 + R2 + R3 — Consolidated View', 'Combined effort across all releases');
-  addMetrics(s5, [
-    { label: 'Total Estimated',    value: '7,337.9h' },
-    { label: 'Total Spent',        value: '6,965.0h' },
-    { label: 'Saving (raw)',       value: '+5%',  hi: true },
-    { label: 'Saving excl. UAT R1', value: '+34%', hi: true }
-  ], 0.82);
-  addTable(s5,
-    ['Area', 'Estimated (h)', 'Spent (h)', 'Deviation (h)', '% Saving', '% w/ UAT R1'],
-    [
-      ['Analysis & DF', '866.8',   '708.0',   '+158.8',   '+16%',      '—'],
-      ['DT / Const',    '3,272.7', '3,945.5', '-672.8',   '+48%',      '+1%'],
-      ['Testing',       '2,291.6', '1,269.0', '+1,022.6', '+39%',      '—'],
-      ['Deploy',        '186.0',   '0.0',     '+186.0',   '+100%',     '—'],
-      ['Production',    '680.8',   '153.0',   '+527.8',   '+53%',      '—'],
-      ['Management',    '40.0',    '889.5',   '-849.5',   '—',         '—'],
-      ['TOTAL',         '7,337.9', '6,965.0', '+372.9',   '+5% raw',   '+34% excl. UAT R1']
+      ['Analysis & DF', '494.8',   '388.0',   '+106.8',   '+22%'],
+      ['DT / Const',    '655.2',   '289.5',   '+365.7',   '+56%'],
+      ['Testing',       '989.6',   '249.5',   '+740.1',   '+75%'],
+      ['Deploy',        '0',       '0',       '0',         '\u2014'],
+      ['Production',    '494.8',   '23.0',    '+471.8',   '+95%'],
+      ['Management',    '494.8',   '328.5',   '+166.3',   '+34%'],
+      ['TOTAL',         '3,129.2', '1,278.5', '+1,850.7', '+59%']
     ],
     1.7,
     null
   );
-  // Consolidated note
-  s5.addShape(pptx.ShapeType.rect, { x: 0.4, y: 3.72, w: 9.2, h: 0.3, fill: { color: 'F5F0F8' }, line: { color: PURPLE, width: 1.5 } });
-  s5.addText('* Saving excl. UAT R1 = 1-(4,854h / 7,337.9h) where 4,854h = total spent (6,965h) minus UAT R1 hours (2,111h).', { x: 0.55, y: 3.74, w: 8.9, h: 0.26, fontSize: 7.5, color: '333333' });
+  // R3 note
+  s4.addShape(pptx.ShapeType.rect, { x: 0.4, y: 3.72, w: 9.2, h: 0.3, fill: { color: 'F5F0F8' }, line: { color: PURPLE, width: 1.5 } });
+  s4.addText('\uD83D\uDCA1  Best performing release at +59% \u00B7 All areas delivered savings \u00B7 Management came in under budget for the first time (328.5h vs 494.8h estimated).', { x: 0.55, y: 3.74, w: 8.9, h: 0.26, fontSize: 7.5, color: '333333' });
+  // R3 insight boxes
+  s4.addShape(pptx.ShapeType.rect, { x: 0.4, y: 4.1, w: 4.5, h: 0.72, fill: { color: 'F0FDF4' }, line: { color: GREEN, width: 1.5 } });
+  s4.addText('\uD83D\uDCA1', { x: 0.52, y: 4.16, w: 0.32, h: 0.28, fontSize: 12 });
+  s4.addText('Best Overall Saving', { x: 0.9, y: 4.13, w: 3.8, h: 0.2, fontSize: 9, bold: true, color: GREEN });
+  s4.addText('R3 achieved +59% overall saving \u2014 the strongest completed release. All areas delivered savings, led by Production (+95%) and Testing (+75%).', { x: 0.9, y: 4.33, w: 3.8, h: 0.42, fontSize: 7.5, color: '14532D' });
+  s4.addShape(pptx.ShapeType.rect, { x: 5.1, y: 4.1, w: 4.5, h: 0.72, fill: { color: 'F0FDF4' }, line: { color: GREEN, width: 1.5 } });
+  s4.addText('\uD83D\uDCC9', { x: 5.22, y: 4.16, w: 0.32, h: 0.28, fontSize: 12 });
+  s4.addText('Management Under Control', { x: 5.6, y: 4.13, w: 3.8, h: 0.2, fontSize: 9, bold: true, color: GREEN });
+  s4.addText('Unlike R1 and R2, R3 had a management budget (494.8h) and came in under it at 328.5h \u2014 a +34% saving, showing improved governance.', { x: 5.6, y: 4.33, w: 3.8, h: 0.42, fontSize: 7.5, color: '14532D' });
+  addFooter(s4, 4);
+
+  // ── Slide 5: Consolidated ──
+  const s5 = pptx.addSlide();
+  addHeader(s5, 'R1 + R2 + R3 — Consolidated View', 'Testing & Production consistently outperform \u00B7 UAT R1 is the main cost driver');
+  addMetrics(s5, [
+    { label: 'Total Estimated',    value: '6,773.3h' },
+    { label: 'Total Spent',        value: '7,099.5h' },
+    { label: 'Testing Saving',     value: '+43%',  hi: true },
+    { label: 'Production Saving',  value: '+78%',  hi: true },
+    { label: 'Mgmt Over Budget',   value: '88%',   hi: true }
+  ], 0.82);
+  addTable(s5,
+    ['Area', 'Estimated (h)', 'Spent (h)', 'Deviation (h)', '% Saving', '% excl. UAT R1'],
+    [
+      ['Analysis & DF', '866.8',   '723.0',   '+143.8',   '+17%',    '\u2014'],
+      ['DT / Const',    '2,439.2', '3,979.5', '-1,540.3', '-63%',    '+24%'],
+      ['Testing',       '2,291.7', '1,315.0', '+976.7',   '+43%',    '\u2014'],
+      ['Deploy',        '0',       '0',       '0',         '\u2014',  '\u2014'],
+      ['Production',    '680.8',   '153.0',   '+527.8',   '+78%',    '\u2014'],
+      ['Management',    '494.8',   '929.0',   '-434.2',   '-88%',    '\u2014'],
+      ['TOTAL',         '6,773.3', '7,099.5', '-326.2',   '-5% raw', '+27% excl. UAT R1']
+    ],
+    1.7,
+    null
+  );
   // Consolidated insight boxes
-  s5.addShape(pptx.ShapeType.rect, { x: 0.4, y: 4.1, w: 4.5, h: 0.72, fill: { color: 'F0FDF4' }, line: { color: GREEN, width: 1.5 } });
-  s5.addText('\uD83D\uDCC8', { x: 0.52, y: 4.16, w: 0.32, h: 0.28, fontSize: 12 });
-  s5.addText('Utilization Trend', { x: 0.9, y: 4.13, w: 3.8, h: 0.2, fontSize: 9, bold: true, color: GREEN });
-  s5.addText('R1: 88% utilization (excl. UAT) \u2192 R2: 70% utilization. Declining rate signals higher team efficiency across releases.', { x: 0.9, y: 4.33, w: 3.8, h: 0.42, fontSize: 7.5, color: '14532D' });
-  s5.addShape(pptx.ShapeType.rect, { x: 5.1, y: 4.1, w: 4.5, h: 0.72, fill: { color: 'FFF7ED' }, line: { color: 'F97316', width: 1.5 } });
-  s5.addText('\u26A0\uFE0F', { x: 5.22, y: 4.16, w: 0.32, h: 0.28, fontSize: 12 });
-  s5.addText('Management Gap', { x: 5.6, y: 4.13, w: 3.8, h: 0.2, fontSize: 9, bold: true, color: 'F97316' });
-  s5.addText('889.5h spent vs 40h estimated across R1\u2013R3. 2,124% over budget \u2014 largest unbudgeted cost driver requiring immediate action.', { x: 5.6, y: 4.33, w: 3.8, h: 0.42, fontSize: 7.5, color: '7C2D12' });
+  s5.addShape(pptx.ShapeType.rect, { x: 0.4, y: 3.72, w: 4.5, h: 0.72, fill: { color: 'F0FDF4' }, line: { color: GREEN, width: 1.5 } });
+  s5.addText('\uD83D\uDCC8', { x: 0.52, y: 3.78, w: 0.32, h: 0.28, fontSize: 12 });
+  s5.addText('Strong excl. UAT R1', { x: 0.9, y: 3.75, w: 3.8, h: 0.2, fontSize: 9, bold: true, color: GREEN });
+  s5.addText('Removing the R1 UAT burden (2,120h), the team saved +27% overall. DT/Const excl. UAT shows +24% saving \u2014 confirming real efficiency once debt was cleared.', { x: 0.9, y: 3.95, w: 3.8, h: 0.42, fontSize: 7.5, color: '14532D' });
+  s5.addShape(pptx.ShapeType.rect, { x: 5.1, y: 3.72, w: 4.5, h: 0.72, fill: { color: 'FFF7ED' }, line: { color: 'F97316', width: 1.5 } });
+  s5.addText('\u26A0\uFE0F', { x: 5.22, y: 3.78, w: 0.32, h: 0.28, fontSize: 12 });
+  s5.addText('Management Gap', { x: 5.6, y: 3.75, w: 3.8, h: 0.2, fontSize: 9, bold: true, color: 'F97316' });
+  s5.addText('929h spent vs 494.8h estimated \u2014 88% over budget. R1 & R2 had zero management estimates, making all their spend unbudgeted. Governance improvement needed.', { x: 5.6, y: 3.95, w: 3.8, h: 0.42, fontSize: 7.5, color: '7C2D12' });
   addFooter(s5, 5);
 
   // ── Slide 6: Velocity Trend ──
   const s6 = pptx.addSlide();
-  addHeader(s6, 'Velocity Trend Analysis', '18pp efficiency improvement R1\u2192R2 \u00B7 Basis for forward simulation');
+  addHeader(s6, 'Velocity Trend Analysis', 'DT/Const improving R1\u2192R2\u2192R3 \u00B7 Testing & Production consistently efficient');
   addMetrics(s6, [
-    { label: 'DT/Const Improvement', value: '26pp', hi: true },
-    { label: 'Analysis & DF Trend',  value: '\u2192 Est.', hi: true },
-    { label: 'Mgmt Overhead Drop',   value: '-62%', hi: true }
+    { label: 'DT/Const Improvement', value: 'R1\u2192R3', hi: true },
+    { label: 'Testing R3 Saving',    value: '+75%', hi: true },
+    { label: 'Production R3 Saving', value: '+95%', hi: true }
   ], 0.82);
   addTable(s6,
-    ['Area', 'R1 Utilization', 'R2 Utilization', 'Trend', 'Insight'],
+    ['Area', 'R1 Utilization', 'R2 Utilization', 'R3 Utilization', 'Insight'],
     [
-      ['DT / Const',    '71%',          '45%',   '-26pp', 'Strongest improvement \u2014 debt resolved'],
-      ['Testing',       '76%',          '83%',   '+7pp',  'Slight regression \u2014 monitor R3'],
-      ['Analysis & DF', '79%',          '98%',   '+19pp', 'Converging to estimate \u2014 scope growing'],
-      ['Management',    'Unbudgeted',   '166h',  '-62%',  'Team coordination maturing']
+      ['DT / Const',    '141%',       '49%',  '44%',  'Consistent improvement \u2014 debt resolved, team maturing'],
+      ['Testing',       '76%',        '86%',  '25%',  'R3 partial \u2014 strong saving on completed work'],
+      ['Analysis & DF', '79%',        '98%',  '78%',  'Recovering from R2 \u2014 scope well estimated in R3'],
+      ['Management',    'Unbudgeted', '166h', '328.5h', 'R3 has budget (494.8h est.) \u2014 spending within estimate']
     ],
     1.7,
     null
   );
   s6.addShape(pptx.ShapeType.rect, { x: 0.4, y: 3.9, w: 4.5, h: 0.9, fill: { color: 'F0FDF4' }, line: { color: GREEN, width: 1.5 } });
   s6.addText('\uD83D\uDCCA', { x: 0.52, y: 3.96, w: 0.32, h: 0.3, fontSize: 12 });
-  s6.addText('Overall Velocity', { x: 0.9, y: 3.94, w: 3.8, h: 0.22, fontSize: 9, bold: true, color: GREEN });
-  s6.addText('The team improved efficiency by 18pp from R1 to R2, forming the basis for R4\u2013R6 projections.', { x: 0.9, y: 4.16, w: 3.8, h: 0.56, fontSize: 8, color: '14532D' });
+  s6.addText('DT/Const Maturing', { x: 0.9, y: 3.94, w: 3.8, h: 0.22, fontSize: 9, bold: true, color: GREEN });
+  s6.addText('DT/Const utilization fell from 141% (R1) \u2192 49% (R2) \u2192 44% (R3) \u2014 a clear and consistent improvement confirming the team\'s growing velocity release over release.', { x: 0.9, y: 4.16, w: 3.8, h: 0.56, fontSize: 8, color: '14532D' });
   s6.addShape(pptx.ShapeType.rect, { x: 5.1, y: 3.9, w: 4.5, h: 0.9, fill: { color: 'FFF7ED' }, line: { color: 'F97316', width: 1.5 } });
   s6.addText('\uD83D\uDD0D', { x: 5.22, y: 3.96, w: 0.32, h: 0.3, fontSize: 12 });
-  s6.addText('Watch Areas', { x: 5.6, y: 3.94, w: 3.8, h: 0.22, fontSize: 9, bold: true, color: 'F97316' });
-  s6.addText('Testing showed slight regression (+7pp) and Analysis & DF is converging to estimate. Both need attention in R4.', { x: 5.6, y: 4.16, w: 3.8, h: 0.56, fontSize: 8, color: '7C2D12' });
+  s6.addText('R3 Partial Data', { x: 5.6, y: 3.94, w: 3.8, h: 0.22, fontSize: 9, bold: true, color: 'F97316' });
+  s6.addText('R3 utilization figures are partial \u2014 Testing at 25% and Production at 5% of estimated budget spent. Final R3 efficiency confirmed once these areas complete.', { x: 5.6, y: 4.16, w: 3.8, h: 0.56, fontSize: 8, color: '7C2D12' });
   addFooter(s6, 6);
 
   // ── Slide 7: Forward Simulation ──
@@ -390,7 +390,7 @@ function downloadPptx() {
   const risks = [
     { icon: '\uD83D\uDCB0', title: 'Management Overrun',        text: '889.5h spent vs 40h estimated across R1\u2013R3 \u2014 2,124% over budget. Formalise a management allocation of 150\u2013200h per release.' },
     { icon: '\uD83D\uDD01', title: 'Technical Debt Recurrence', text: "R1's 2,111h UAT burden shows how inherited debt can mask true performance. Implement technical debt tracking per release." },
-    { icon: '\uD83D\uDCCB', title: 'R3 Estimation Gaps',        text: '7 USs still without estimates \u2014 final R3 figures could shift the baseline for simulation.' },
+    { icon: '\uD83D\uDCCB', title: 'R3 Estimation Gaps',        text: '5 USs still without estimates \u2014 final R3 figures could shift the baseline for simulation.' },
     { icon: '\uD83D\uDE80', title: 'Deploy at 0h Actual',       text: '186h estimated but 0h spent across all releases. Review if deploy effort is captured elsewhere or if estimates should be adjusted.' }
   ];
   risks.forEach((r, i) => {
@@ -422,11 +422,10 @@ function downloadPptx() {
   const s9 = pptx.addSlide();
   addHeader(s9, 'Notes & Clarifications', 'Context for accurate interpretation of the metrics');
   const notes = [
-    { icon: '\uD83D\uDCCC', title: 'Data Extraction Date',                   text: 'Metrics extracted on Tuesday, March 24th. Subsequent ALMA reporting may show updated figures. This report reflects a snapshot subject to change in the next cycle.' },
+    { icon: '\uD83D\uDCCC', title: 'Data Extraction Date',                   text: 'Metrics extracted on Tuesday, April 14th. Subsequent ALMA reporting may show updated figures. This report reflects a snapshot subject to change in the next cycle.' },
     { icon: '\u2716\uFE0F', title: 'Estimation Methodology \u2013 x4 Factor', text: 'All total estimations include a 4x multiplication factor applied to the base technical estimation. E.g. if a US is technically estimated at 10h, the total estimation used is 40h, accounting for full delivery effort across all areas.' },
     { icon: '\u26A0\uFE0F', title: 'R1 \u2013 DT Hours & UAT R1',             text: 'DT hours in R1 (3,183h) include 2,111h of UAT R1: (1) technical debt from previous UATs + UAT from December, and (2) R2 UAT hours logged here because the R2 ticket hadn\'t been created and ALMA UAT reporting wasn\'t aligned with the team.' },
-    { icon: '\u26A0\uFE0F', title: 'R2 \u2013 DT/Const Estimation',            text: 'R2 DT and Const estimation was duplicated. Only DT effort was used as the estimated figure. Real spent cost reflects both DT and Const actual hours.' },
-    { icon: '\uD83D\uDD04', title: 'R3 \u2013 Still In Progress',              text: '2 USs are under technical revision and 5 are in functional analysis with no estimated values. These will be incorporated once complete.' },
+    { icon: '\u2705',       title: 'R3 \u2013 Completed',                       text: 'R3 completed April 2026 with a +59% overall saving \u2014 the best performing release. All areas delivered savings, with Production (+95%) and Testing (+75%) leading the results.' },
     { icon: '\uD83D\uDCCA', title: 'Forward Simulation Assumptions',           text: 'R4\u2013R6 projections are based on observed velocity trends with diminishing returns. Assumes no new technical debt, stable team composition, and management budgets of 150\u2013200h per release.' }
   ];
   const noteItemH = 0.58;

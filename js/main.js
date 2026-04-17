@@ -251,29 +251,111 @@ function downloadPptx() {
   );
   addFooter(s5, 5);
 
-  // ── Slide 6: Notes ──
+  // ── Slide 6: Velocity Trend ──
   const s6 = pptx.addSlide();
-  addHeader(s6, 'Notes & Clarifications', 'Context for accurate interpretation of the metrics');
-  const notes = [
-    { title: 'Data Extraction Date',            text: 'Metrics extracted on Friday, January 27th. Subsequent ALMA reporting may show updated figures. This report reflects a snapshot subject to change.' },
-    { title: 'Estimation Methodology – x4 Factor', text: 'All total estimations include a 4x multiplication factor. E.g. if a US is estimated at 10h, the total estimation used is 40h, covering full delivery effort.' },
-    { title: 'R1 – DT Hours & UAT R1',           text: 'DT hours in R1 (3,183h) include 2,111h of UAT R1: technical debt + UAT December + R2 UAT hours logged here because the R2 ticket had not been created.' },
-    { title: 'R2 – DT/Const Estimation',         text: 'R2 DT and Const estimation was duplicated. Only DT effort was used as the estimated figure. Real spent reflects both DT and Const actual hours.' },
-    { title: 'R3 – Still In Progress',           text: '2 USs are under technical revision and 5 are in functional analysis with no estimated values yet. These will be incorporated once complete.' }
-  ];
-  notes.forEach((n, i) => {
-    const y = 0.82 + i * 0.84;
-    s6.addShape(pptx.ShapeType.rect, { x: 0.4, y, w: 9.2, h: 0.76, fill: { color: i % 2 === 0 ? LIGHT : WHITE }, line: { color: PURPLE, width: 1.5 } });
-    s6.addText(n.title, { x: 0.6, y: y + 0.06, w: 8.8, h: 0.22, fontSize: 10, bold: true, color: PURPLE });
-    s6.addText(n.text,  { x: 0.6, y: y + 0.3,  w: 8.8, h: 0.38, fontSize: 8.5, color: '444444' });
-  });
+  addHeader(s6, 'Velocity Trend Analysis', '18pp efficiency improvement R1\u2192R2 \u00B7 Basis for forward simulation');
+  addMetrics(s6, [
+    { label: 'DT/Const Improvement', value: '26pp', hi: true },
+    { label: 'Analysis & DF Trend',  value: '\u2192 Est.', hi: true },
+    { label: 'Mgmt Overhead Drop',   value: '-62%', hi: true }
+  ], 0.82);
+  addTable(s6,
+    ['Area', 'R1 Utilization', 'R2 Utilization', 'Trend', 'Insight'],
+    [
+      ['DT / Const',    '71%',          '45%',   '-26pp', 'Strongest improvement \u2014 debt resolved'],
+      ['Testing',       '76%',          '83%',   '+7pp',  'Slight regression \u2014 monitor R3'],
+      ['Analysis & DF', '79%',          '98%',   '+19pp', 'Converging to estimate \u2014 scope growing'],
+      ['Management',    'Unbudgeted',   '166h',  '-62%',  'Team coordination maturing']
+    ],
+    1.7,
+    null
+  );
+  s6.addShape(pptx.ShapeType.rect, { x: 0.4, y: 3.9, w: 4.5, h: 0.9, fill: { color: 'F0FDF4' }, line: { color: GREEN, width: 1.5 } });
+  s6.addText('Overall Velocity', { x: 0.55, y: 3.94, w: 4.2, h: 0.2, fontSize: 9, bold: true, color: GREEN });
+  s6.addText('The team improved efficiency by 18pp from R1 to R2, forming the basis for R4\u2013R6 projections.', { x: 0.55, y: 4.14, w: 4.2, h: 0.6, fontSize: 8, color: '14532D' });
+  s6.addShape(pptx.ShapeType.rect, { x: 5.1, y: 3.9, w: 4.5, h: 0.9, fill: { color: 'FFF7ED' }, line: { color: 'F97316', width: 1.5 } });
+  s6.addText('Watch Areas', { x: 5.25, y: 3.94, w: 4.2, h: 0.2, fontSize: 9, bold: true, color: 'F97316' });
+  s6.addText('Testing showed slight regression (+7pp) and Analysis & DF is converging to estimate. Both need attention in R4.', { x: 5.25, y: 4.14, w: 4.2, h: 0.6, fontSize: 8, color: '7C2D12' });
   addFooter(s6, 6);
 
-  // ── Slide 7: Gràcies ──
+  // ── Slide 7: Forward Simulation ──
   const s7 = pptx.addSlide();
-  s7.background = { color: PURPLE };
-  s7.addText('Gràcies', { x: 0.8, y: 1.5, w: 8, h: 2, fontSize: 54, bold: true, color: WHITE });
-  s7.addText('Copyright © 2025 Accenture. All rights reserved.', { x: 0.8, y: 5.1, w: 9, h: 0.28, fontSize: 9, color: PURPLE_ACCENT });
+  addHeader(s7, 'R4\u2013R6 Forward Simulation', 'Based on current velocity trends with diminishing returns \u00B7 ~7,500h total budget');
+  addMetrics(s7, [
+    { label: 'Cumulative Saved R4\u2013R6', value: '~2,950h', hi: true },
+    { label: 'Avg Saving R4\u2013R6',       value: '+39%',    hi: true },
+    { label: 'Mgmt Budget / Release',       value: '150\u2013200h' }
+  ], 0.82);
+  addTable(s7,
+    ['Release', 'Estimated (h)', 'Projected Spent (h)', 'Projected Saving', 'Utilization', 'Note'],
+    [
+      ['R4',          '~2,500', '~1,625', '+35%',    '65%',  '+5pp improvement over R2'],
+      ['R5',          '~2,500', '~1,500', '+40%',    '60%',  'Team fully mature'],
+      ['R6',          '~2,500', '~1,425', '+43%',    '57%',  'Diminishing returns \u2014 near plateau'],
+      ['TOTAL R4\u2013R6', '~7,500', '~4,550', '~+2,950h', '~61%', 'Avg +39% saving']
+    ],
+    1.7,
+    null
+  );
+  s7.addShape(pptx.ShapeType.rect, { x: 0.4, y: 3.9, w: 4.5, h: 0.9, fill: { color: 'F0FDF4' }, line: { color: GREEN, width: 1.5 } });
+  s7.addText('Efficiency Plateau', { x: 0.55, y: 3.94, w: 4.2, h: 0.2, fontSize: 9, bold: true, color: GREEN });
+  s7.addText('Projections show diminishing returns approaching R6 \u2014 team nears peak efficiency at ~57% utilization. R5 = full maturity.', { x: 0.55, y: 4.14, w: 4.2, h: 0.6, fontSize: 8, color: '14532D' });
+  s7.addShape(pptx.ShapeType.rect, { x: 5.1, y: 3.9, w: 4.5, h: 0.9, fill: { color: 'FFF7ED' }, line: { color: 'F97316', width: 1.5 } });
+  s7.addText('Management Budget', { x: 5.25, y: 3.94, w: 4.2, h: 0.2, fontSize: 9, bold: true, color: 'F97316' });
+  s7.addText('Recommend formalising 150\u2013200h management allocation per release in future estimates to prevent recurring overruns.', { x: 5.25, y: 4.14, w: 4.2, h: 0.6, fontSize: 8, color: '7C2D12' });
+  addFooter(s7, 7);
 
-  pptx.writeFile({ fileName: 'Release_Performance_Metrics.pptx' });
+  // ── Slide 8: Risks & Recommendations ──
+  const s8 = pptx.addSlide();
+  addHeader(s8, 'Risks & Recommendations', 'Critical gaps to address to sustain projected efficiency gains');
+  const risks = [
+    { title: 'Management Overrun',       text: '889.5h spent vs 40h estimated across R1\u2013R3 (2,124% over budget). Formalise 150\u2013200h management allocation per release.' },
+    { title: 'Technical Debt Recurrence', text: "R1's 2,111h UAT burden shows how inherited debt masks true performance. Implement technical debt tracking per release." },
+    { title: 'R3 Estimation Gaps',       text: '7 USs still without estimates \u2014 final R3 figures could shift the simulation baseline.' },
+    { title: 'Deploy at 0h Actual',      text: '186h estimated but 0h spent across all releases. Review if deploy effort is captured elsewhere.' }
+  ];
+  const recs = [
+    { title: 'Re-baseline Estimation Methodology', text: 'The x4 factor overestimates by 30\u201340% for mature releases. Adjust to reflect actual team velocity.' },
+    { title: 'Quarterly Capacity Review',           text: 'Conduct quarterly reviews to validate simulation assumptions against actuals and recalibrate projections. Protecting projected ~2,950h R4\u2013R6 savings.' }
+  ];
+  risks.forEach((r, i) => {
+    const y = 0.82 + i * 0.56;
+    s8.addShape(pptx.ShapeType.rect, { x: 0.4, y, w: 4.4, h: 0.5, fill: { color: 'FEF2F2' }, line: { color: RED, width: 1.5 } });
+    s8.addText(r.title, { x: 0.55, y: y + 0.04, w: 4.1, h: 0.18, fontSize: 9, bold: true, color: RED });
+    s8.addText(r.text,  { x: 0.55, y: y + 0.22, w: 4.1, h: 0.24, fontSize: 7.5, color: '333333' });
+  });
+  recs.forEach((r, i) => {
+    const y = 0.82 + i * 1.16;
+    s8.addShape(pptx.ShapeType.rect, { x: 5.1, y, w: 4.5, h: 1.08, fill: { color: 'F0FDF4' }, line: { color: GREEN, width: 1.5 } });
+    s8.addText(r.title, { x: 5.25, y: y + 0.06, w: 4.2, h: 0.22, fontSize: 9, bold: true, color: GREEN });
+    s8.addText(r.text,  { x: 5.25, y: y + 0.28, w: 4.2, h: 0.74, fontSize: 8, color: '14532D' });
+  });
+  addFooter(s8, 8);
+
+  // ── Slide 9: Notes ──
+  const s9 = pptx.addSlide();
+  addHeader(s9, 'Notes & Clarifications', 'Context for accurate interpretation of the metrics');
+  const notes = [
+    { title: 'Data Extraction Date',               text: 'Metrics extracted on Tuesday, March 24th, 2026. Subsequent ALMA reporting may show updated figures.' },
+    { title: 'Estimation Methodology \u2013 x4 Factor', text: 'All total estimations include a 4x multiplication factor. E.g. if a US is estimated at 10h, the total estimation used is 40h.' },
+    { title: 'R1 \u2013 DT Hours & UAT R1',        text: 'DT hours in R1 (3,183h) include 2,111h of UAT R1: technical debt + UAT December + R2 UAT hours logged here because the R2 ticket had not been created.' },
+    { title: 'R2 \u2013 DT/Const Estimation',      text: 'R2 DT and Const estimation was duplicated. Only DT effort was used as the estimated figure.' },
+    { title: 'R3 \u2013 Still In Progress',        text: '2 USs under technical revision and 5 in functional analysis with no estimated values yet.' },
+    { title: 'Forward Simulation Assumptions',     text: 'R4\u2013R6 projections assume no new technical debt, stable team, and management budgets of 150\u2013200h per release.' }
+  ];
+  notes.forEach((n, i) => {
+    const y = 0.82 + i * 0.72;
+    s9.addShape(pptx.ShapeType.rect, { x: 0.4, y, w: 9.2, h: 0.65, fill: { color: i % 2 === 0 ? LIGHT : WHITE }, line: { color: PURPLE, width: 1.5 } });
+    s9.addText(n.title, { x: 0.6, y: y + 0.05, w: 8.8, h: 0.2, fontSize: 9, bold: true, color: PURPLE });
+    s9.addText(n.text,  { x: 0.6, y: y + 0.27, w: 8.8, h: 0.34, fontSize: 8, color: '444444' });
+  });
+  addFooter(s9, 9);
+
+  // ── Slide 10: Gràcies ──
+  const s10 = pptx.addSlide();
+  s10.background = { color: PURPLE };
+  s10.addText('Gr\u00E0cies', { x: 0.8, y: 1.5, w: 8, h: 2, fontSize: 54, bold: true, color: WHITE });
+  s10.addText('Copyright \u00A9 2026 Accenture. All rights reserved.', { x: 0.8, y: 5.1, w: 9, h: 0.28, fontSize: 9, color: PURPLE_ACCENT });
+
+  pptx.writeFile({ fileName: 'Release_Performance_Analysis.pptx' });
 }

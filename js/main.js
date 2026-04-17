@@ -17,8 +17,8 @@ function checkPw(){
   }
 }
 
-const titles = ["Cover", "Summary", "R1", "R2", "R3", "Consolidated", "Notes", "Gràcies"];
-const TOTAL = titles.length;
+const titles = ["Cover", "Summary", "R1", "R2", "R3", "Consolidated", "Velocity", "Simulation", "Risks", "Notes", "Gràcies"];
+const TOTAL = 11;
 let cur = 0;
 
 function goTo(i) {

@@ -95,6 +95,20 @@ tbody tr:last-child td{background:var(--mid);font-weight:700;}
 /* ── Keyboard hint ── */
 #kb-hint{font-size:10px;color:#555;margin-top:8px;}
 
+/* ── Insight row ── */
+.insight-row{display:flex;gap:8px;}
+.insight{flex:1;border-radius:4px;padding:8px 10px;font-size:clamp(8px,1vw,10px);line-height:1.5;border-left:3px solid;}
+.insight.green{background:#F0FDF4;border-color:var(--green);color:#14532D;}
+.insight.orange{background:#FFF7ED;border-color:#F97316;color:#7C2D12;}
+.ins-title{font-weight:800;margin-bottom:2px;}
+
+/* ── Two column layout ── */
+.two-col{display:flex;gap:12px;flex:1;}
+.two-col > div{flex:1;display:flex;flex-direction:column;gap:6px;}
+.col-title{font-size:clamp(9px,1.1vw,11px);font-weight:800;padding:4px 8px;border-radius:4px;margin-bottom:2px;}
+.col-title.pos{background:#F0FDF4;color:var(--green);}
+.col-title.neg{background:#FEF2F2;color:var(--red);}
+
 /* ── Password overlay ── */
 #pw-overlay{position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;z-index:9999;}
 #pw-overlay.hidden{display:none;}

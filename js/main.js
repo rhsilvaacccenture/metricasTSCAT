@@ -117,51 +117,48 @@ function downloadPptx() {
     }
   }
 
-  // ── Slide 0: Cover — Split purple/white panel layout ──
+  // ── Slide 0: Cover — Full-bleed purple ──
   const s0 = pptx.addSlide();
 
-  // ── LEFT purple panel (42% width = ~4.2in) ──
-  s0.addShape(pptx.ShapeType.rect, { x: 0, y: 0, w: 4.2, h: 5.63, fill: { color: PURPLE } });
+  // Full background
+  s0.addShape(pptx.ShapeType.rect, { x: 0, y: 0, w: 10, h: 5.63, fill: { color: PURPLE } });
+  // Slightly darker left gradient overlay for depth
+  s0.addShape(pptx.ShapeType.rect, { x: 0, y: 0, w: 5, h: 5.63, fill: { color: PURPLE_DARK } });
+  // Blend rectangle to smooth gradient
+  s0.addShape(pptx.ShapeType.rect, { x: 3.5, y: 0, w: 2.5, h: 5.63, fill: { color: PURPLE } });
+
+  // Watermark arrows (right side, subtle)
+  s0.addText('\u276F', { x: 4.8, y: -1.0, w: 7.0, h: 7.5, fontSize: 420, bold: true, color: '9353A0', align: 'center', valign: 'middle' });
+  s0.addText('\u276F', { x: 6.0, y: 0.0, w: 5.0, h: 5.8, fontSize: 280, bold: false, color: 'BD96C5', align: 'center', valign: 'middle' });
+
   // Tag
-  s0.addText('ACCENTURE \u00B7 CTTI \u00B7 APRIL 2026', { x: 0.3, y: 0.28, w: 3.6, h: 0.22, fontSize: 7, bold: true, color: PURPLE_ACCENT, charSpacing: 1.5 });
+  s0.addText('ACCENTURE \u00B7 CTTI \u00B7 APRIL 2026', { x: 0.55, y: 0.65, w: 6.5, h: 0.25, fontSize: 8, bold: true, color: PURPLE_ACCENT, charSpacing: 2 });
   // Title
-  s0.addText('Release\nPerformance\nAnalysis &\nForward\nSimulation', { x: 0.3, y: 0.58, w: 3.7, h: 2.8, fontSize: 22, bold: true, color: WHITE, breakLine: true, valign: 'top' });
+  s0.addText('Release Performance\nAnalysis & Forward Simulation', { x: 0.55, y: 1.05, w: 6.8, h: 1.75, fontSize: 28, bold: true, color: WHITE, breakLine: true, valign: 'top' });
   // Divider
-  s0.addShape(pptx.ShapeType.rect, { x: 0.3, y: 3.46, w: 0.5, h: 0.04, fill: { color: PURPLE_ACCENT } });
+  s0.addShape(pptx.ShapeType.rect, { x: 0.55, y: 2.92, w: 0.5, h: 0.04, fill: { color: PURPLE_ACCENT } });
   // Subtitle
-  s0.addText('R1\u2013R3 Actuals and R4\u2013R6 Projections', { x: 0.3, y: 3.58, w: 3.7, h: 0.22, fontSize: 9, bold: true, color: 'rgba(255,255,255,0.85)' });
+  s0.addText('R1\u2013R3 Actuals \u00B7 R4\u2013R6 Projections', { x: 0.55, y: 3.06, w: 6.8, h: 0.26, fontSize: 11, bold: true, color: 'D9C0E8' });
   // Meta
-  s0.addText('Extraction date: March 24, 2026', { x: 0.3, y: 3.84, w: 3.7, h: 0.18, fontSize: 8, color: 'CCAADD' });
+  s0.addText('Extraction date: March 24, 2026 \u00B7 Data subject to update', { x: 0.55, y: 3.38, w: 6.8, h: 0.2, fontSize: 8.5, color: 'A888BB' });
+
   // Badges
-  s0.addShape(pptx.ShapeType.roundRect, { x: 0.3, y: 4.12, w: 1.3, h: 0.26, fill: { color: '6A2580' }, line: { color: 'AA70C0' }, rectRadius: 0.13 });
-  s0.addText('+34% Saving', { x: 0.3, y: 4.12, w: 1.3, h: 0.26, fontSize: 8, bold: true, color: WHITE, align: 'center', valign: 'middle' });
-  s0.addShape(pptx.ShapeType.roundRect, { x: 1.72, y: 4.12, w: 1.8, h: 0.26, fill: { color: '6A2580' }, line: { color: 'AA70C0' }, rectRadius: 0.13 });
-  s0.addText('~2,950h Projected', { x: 1.72, y: 4.12, w: 1.8, h: 0.26, fontSize: 8, bold: true, color: WHITE, align: 'center', valign: 'middle' });
+  s0.addShape(pptx.ShapeType.roundRect, { x: 0.55, y: 3.74, w: 2.1, h: 0.3, fill: { color: '5C2270' }, line: { color: '9B5CB0' }, rectRadius: 0.15 });
+  s0.addText('+34% Saving excl. UAT R1', { x: 0.55, y: 3.74, w: 2.1, h: 0.3, fontSize: 7.5, bold: true, color: WHITE, align: 'center', valign: 'middle' });
+  s0.addShape(pptx.ShapeType.roundRect, { x: 2.78, y: 3.74, w: 2.15, h: 0.3, fill: { color: '5C2270' }, line: { color: '9B5CB0' }, rectRadius: 0.15 });
+  s0.addText('~2,950h Projected R4\u2013R6', { x: 2.78, y: 3.74, w: 2.15, h: 0.3, fontSize: 7.5, bold: true, color: WHITE, align: 'center', valign: 'middle' });
+  s0.addShape(pptx.ShapeType.roundRect, { x: 5.06, y: 3.74, w: 1.85, h: 0.3, fill: { color: '5C2270' }, line: { color: '9B5CB0' }, rectRadius: 0.15 });
+  s0.addText('3 Releases Analysed', { x: 5.06, y: 3.74, w: 1.85, h: 0.3, fontSize: 7.5, bold: true, color: WHITE, align: 'center', valign: 'middle' });
 
-  // ── RIGHT white panel ──
-  // Watermark arrows
-  s0.addText('\u276F', { x: 5.8, y: -0.2, w: 5, h: 6, fontSize: 380, bold: true, color: 'EDE0F5', align: 'center', valign: 'middle' });
-  s0.addText('\u276F', { x: 6.8, y: 0.4, w: 3, h: 5, fontSize: 230, bold: false, color: 'D8C0EB', align: 'center', valign: 'middle' });
-  // Key metric cards
-  s0.addShape(pptx.ShapeType.roundRect, { x: 4.5, y: 1.2, w: 2.5, h: 1.0, fill: { color: LIGHT }, line: { color: MID }, rectRadius: 0.06 });
-  s0.addText('TOTAL ESTIMATED', { x: 4.5, y: 1.3, w: 2.5, h: 0.22, fontSize: 7, bold: true, color: GRAY, align: 'center', charSpacing: 0.5 });
-  s0.addText('7,337.9h', { x: 4.5, y: 1.54, w: 2.5, h: 0.52, fontSize: 20, bold: true, color: BLACK, align: 'center' });
-
-  s0.addShape(pptx.ShapeType.roundRect, { x: 7.2, y: 1.2, w: 2.5, h: 1.0, fill: { color: LIGHT }, line: { color: MID }, rectRadius: 0.06 });
-  s0.addText('TOTAL SPENT', { x: 7.2, y: 1.3, w: 2.5, h: 0.22, fontSize: 7, bold: true, color: GRAY, align: 'center', charSpacing: 0.5 });
-  s0.addText('6,965.0h', { x: 7.2, y: 1.54, w: 2.5, h: 0.52, fontSize: 20, bold: true, color: BLACK, align: 'center' });
-
-  s0.addShape(pptx.ShapeType.roundRect, { x: 4.5, y: 2.4, w: 5.2, h: 1.0, fill: { color: PURPLE }, line: { color: PURPLE }, rectRadius: 0.06 });
-  s0.addText('SAVING EXCL. UAT R1', { x: 4.5, y: 2.5, w: 5.2, h: 0.22, fontSize: 7, bold: true, color: PURPLE_ACCENT, align: 'center', charSpacing: 0.5 });
-  s0.addText('+34%', { x: 4.5, y: 2.74, w: 5.2, h: 0.52, fontSize: 26, bold: true, color: WHITE, align: 'center' });
-
-  // ── Footer (right panel only) ──
-  s0.addShape(pptx.ShapeType.rect, { x: 4.2, y: 5.0, w: 5.8, h: 0.02, fill: { color: MID } });
-  s0.addText('\u276F', { x: 4.35, y: 5.08, w: 0.25, h: 0.28, fontSize: 11, bold: true, color: PURPLE });
-  s0.addShape(pptx.ShapeType.rect, { x: 4.68, y: 5.1, w: 0.02, h: 0.26, fill: { color: MID } });
-  s0.addText('Generalitat de Catalunya', { x: 4.78, y: 5.08, w: 3.2, h: 0.16, fontSize: 7, color: GRAY });
-  s0.addText('Centre de Telecomunicacions i Tecnologies de la Informaci\u00F3', { x: 4.78, y: 5.23, w: 3.2, h: 0.14, fontSize: 6.5, bold: true, color: GRAY });
-  s0.addText('Copyright \u00A9 2026 Accenture. All rights reserved.', { x: 7.5, y: 5.1, w: 2.3, h: 0.28, fontSize: 7, color: GRAY, align: 'right' });
+  // Footer separator
+  s0.addShape(pptx.ShapeType.rect, { x: 0, y: 5.0, w: 10, h: 0.015, fill: { color: '9B5CB0' } });
+  // Footer brand: arrow icon
+  s0.addText('\u276F', { x: 0.28, y: 5.05, w: 0.3, h: 0.38, fontSize: 14, bold: true, color: WHITE });
+  // Brand text
+  s0.addText('Generalitat de Catalunya', { x: 0.7, y: 5.07, w: 4.2, h: 0.15, fontSize: 6.5, color: 'CCAADD' });
+  s0.addText('Centre de Telecomunicacions i Tecnologies de la Informaci\u00F3', { x: 0.7, y: 5.22, w: 4.2, h: 0.14, fontSize: 6, bold: true, color: 'CCAADD' });
+  // Copyright
+  s0.addText('Copyright \u00A9 2026 Accenture. All rights reserved.', { x: 5.8, y: 5.1, w: 4.0, h: 0.26, fontSize: 7, color: 'A888BB', align: 'right' });
 
   // ── Slide 1: Summary ──
   const s1 = pptx.addSlide();
@@ -188,7 +185,7 @@ function downloadPptx() {
 
   // ── Slide 2: R1 ──
   const s2 = pptx.addSlide();
-  addHeader(s2, 'R1 — Release 1', 'Completed · UAT R1 included');
+  addHeader(s2, 'R1 — Deep Dive \u00B7 Lessons Learned', 'Completed \u00B7 16 Dec 2025 \u2013 31 Jan 2026 \u00B7 UAT R1 included \u00B7 All estimates use x4 factor');
   addMetrics(s2, [
     { label: 'Total Estimated',   value: '2,347.5h' },
     { label: 'Total Spent (raw)', value: '4,183.0h' },
@@ -226,7 +223,7 @@ function downloadPptx() {
 
   // ── Slide 3: R2 ──
   const s3 = pptx.addSlide();
-  addHeader(s3, 'R2 — Release 2', 'Completed');
+  addHeader(s3, 'R2 — Deep Dive \u00B7 Efficiency Gains', 'Completed \u00B7 1 Feb \u2013 16 Feb 2026 \u00B7 Technical debt resolved \u00B7 Strongest DT/Const improvement');
   addMetrics(s3, [
     { label: 'Total Estimated', value: '2,315.3h' },
     { label: 'Total Spent',     value: '1,611.0h' },
@@ -263,7 +260,7 @@ function downloadPptx() {
 
   // ── Slide 4: R3 ──
   const s4 = pptx.addSlide();
-  addHeader(s4, 'R3 — Release 3', 'In Progress');
+  addHeader(s4, 'R3 — Status \u00B7 In Progress', '17 Feb \u2013 6 Apr 2026 \u00B7 Partial data \u00B7 March 24, 2026 extraction');
   addMetrics(s4, [
     { label: 'Total Estimated',    value: '2,674.4h' },
     { label: 'Spent So Far',       value: '1,171.0h' },

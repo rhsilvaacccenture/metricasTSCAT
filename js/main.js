@@ -78,9 +78,10 @@ function downloadPptx() {
   }
 
   function addFooter(slide, num) {
-    slide.addShape(pptx.ShapeType.rect, { x: 0, y: 5.1, w: '100%', h: 0.01, fill: { color: MID } });
-    slide.addText('Copyright © 2025 Accenture. All rights reserved.', { x: 0.3, y: 5.15, w: 7, h: 0.25, fontSize: 8, color: GRAY });
-    slide.addText(String(num), { x: 9.5, y: 5.15, w: 0.3, h: 0.25, fontSize: 8, color: GRAY, align: 'right' });
+    slide.addShape(pptx.ShapeType.rect, { x: 0, y: 5.0, w: '100%', h: 0.02, fill: { color: MID } });
+    slide.addText('\u276F', { x: 0.2, y: 5.08, w: 0.25, h: 0.28, fontSize: 11, bold: true, color: PURPLE });
+    slide.addText('Copyright \u00A9 2026 Accenture. All rights reserved.', { x: 0.5, y: 5.1, w: 8.5, h: 0.22, fontSize: 7.5, color: GRAY });
+    slide.addText(String(num), { x: 9.5, y: 5.1, w: 0.3, h: 0.22, fontSize: 7.5, color: GRAY, align: 'right' });
   }
 
   function addMetrics(slide, metrics, y) {
@@ -118,14 +119,28 @@ function downloadPptx() {
 
   // ── Slide 0: Cover ──
   const s0 = pptx.addSlide();
+  // Top purple bar
   s0.addShape(pptx.ShapeType.rect, { x: 0, y: 0, w: '100%', h: 0.09, fill: { color: PURPLE } });
-  s0.addText('Release Performance\nMetrics Report', { x: 0.8, y: 1.1, w: 6, h: 1.6, fontSize: 32, bold: true, color: BLACK, breakLine: true });
-  s0.addText('R1 · R2 · R3 — Estimated vs. Actual Effort Analysis', { x: 0.8, y: 2.8, w: 7, h: 0.35, fontSize: 14, bold: true, color: PURPLE });
-  s0.addText('Extraction date: March 24, 2026 · Data subject to update', { x: 0.8, y: 3.22, w: 7, h: 0.28, fontSize: 11, color: GRAY });
-  s0.addText('Accenture', { x: 0.8, y: 3.52, w: 7, h: 0.28, fontSize: 11, color: GRAY });
-  s0.addShape(pptx.ShapeType.rect, { x: 0, y: 5.05, w: '100%', h: 0.01, fill: { color: MID } });
-  s0.addText('Generalitat de Catalunya · Centre de Telecomunicacions i Tecnologies de la Informació', { x: 0.3, y: 5.1, w: 7, h: 0.28, fontSize: 8, color: GRAY });
-  s0.addText('Copyright © 2025 Accenture. All rights reserved.', { x: 7.2, y: 5.1, w: 2.5, h: 0.28, fontSize: 8, color: GRAY, align: 'right' });
+  // Watermark ">" arrow — large faint chevron on the right
+  s0.addText('❯', { x: 5.2, y: 0.3, w: 5, h: 5, fontSize: 320, bold: true, color: 'E8D5F0', align: 'center', valign: 'middle' });
+  // Title
+  s0.addText('Release Performance Analysis\n& Forward Simulation', { x: 0.8, y: 1.0, w: 6, h: 1.8, fontSize: 30, bold: true, color: BLACK, breakLine: true });
+  // Subtitle
+  s0.addText('R1\u2013R3 Actuals and R4\u2013R6 Projections', { x: 0.8, y: 2.85, w: 6.5, h: 0.35, fontSize: 13, bold: true, color: PURPLE });
+  // Meta
+  s0.addText('Extraction date: March 24, 2026 \u00B7 Data subject to update', { x: 0.8, y: 3.28, w: 6.5, h: 0.25, fontSize: 10, color: GRAY });
+  s0.addText('Accenture \u00B7 April 2026', { x: 0.8, y: 3.55, w: 6.5, h: 0.25, fontSize: 10, color: GRAY });
+  // Footer separator
+  s0.addShape(pptx.ShapeType.rect, { x: 0, y: 5.0, w: '100%', h: 0.02, fill: { color: MID } });
+  // Footer left: small arrow logo
+  s0.addText('\u276F', { x: 0.2, y: 5.08, w: 0.3, h: 0.35, fontSize: 14, bold: true, color: PURPLE });
+  // Footer left: vertical separator
+  s0.addShape(pptx.ShapeType.rect, { x: 0.58, y: 5.1, w: 0.02, h: 0.28, fill: { color: MID } });
+  // Footer left: brand text
+  s0.addText('Generalitat de Catalunya', { x: 0.68, y: 5.08, w: 5.5, h: 0.18, fontSize: 7.5, color: GRAY });
+  s0.addText('Centre de Telecomunicacions i Tecnologies de la Informaci\u00F3', { x: 0.68, y: 5.24, w: 5.5, h: 0.16, fontSize: 7.5, bold: true, color: GRAY });
+  // Footer right: copyright
+  s0.addText('Copyright \u00A9 2026 Accenture. All rights reserved.', { x: 6.5, y: 5.1, w: 3.3, h: 0.28, fontSize: 7.5, color: GRAY, align: 'right' });
 
   // ── Slide 1: Summary ──
   const s1 = pptx.addSlide();
@@ -174,6 +189,15 @@ function downloadPptx() {
     1.7,
     'DT hours (3,183h) include 2,111h of UAT R1: technical debt from previous UATs + UAT December + R2 UAT. UAT R1: Est. 1,515h · Spent 1,072h · Saving +443h (+29%).'
   );
+  // R1 insight boxes
+  s2.addShape(pptx.ShapeType.rect, { x: 0.4, y: 4.1, w: 4.5, h: 0.78, fill: { color: 'F0FDF4' }, line: { color: GREEN, width: 1.5 } });
+  s2.addText('\uD83D\uDCA1', { x: 0.52, y: 4.18, w: 0.32, h: 0.3, fontSize: 12 });
+  s2.addText('Key Insight', { x: 0.9, y: 4.14, w: 3.8, h: 0.22, fontSize: 9, bold: true, color: GREEN });
+  s2.addText('Without UAT burden, DT/Const was ~1,072h vs 1,515h estimated \u2014 revealing +29% real team efficiency.', { x: 0.9, y: 4.36, w: 3.8, h: 0.44, fontSize: 7.5, color: '14532D' });
+  s2.addShape(pptx.ShapeType.rect, { x: 5.1, y: 4.1, w: 4.5, h: 0.78, fill: { color: 'FFF7ED' }, line: { color: 'F97316', width: 1.5 } });
+  s2.addText('\uD83D\uDEA9', { x: 5.22, y: 4.18, w: 0.32, h: 0.3, fontSize: 12 });
+  s2.addText('Management Flag', { x: 5.6, y: 4.14, w: 3.8, h: 0.22, fontSize: 9, bold: true, color: 'F97316' });
+  s2.addText('434.5h of unbudgeted management effort highlights a gap in the estimation framework that must be addressed.', { x: 5.6, y: 4.36, w: 3.8, h: 0.44, fontSize: 7.5, color: '7C2D12' });
   addFooter(s2, 2);
 
   // ── Slide 3: R2 ──
@@ -199,6 +223,15 @@ function downloadPptx() {
     1.7,
     'R2 DT/Const estimation was duplicated. Only DT effort was considered in the estimated figure. Real spent reflects both DT and Const hours.'
   );
+  // R2 insight boxes
+  s3.addShape(pptx.ShapeType.rect, { x: 0.4, y: 4.1, w: 4.5, h: 0.78, fill: { color: 'F0FDF4' }, line: { color: GREEN, width: 1.5 } });
+  s3.addText('\u2B50', { x: 0.52, y: 4.18, w: 0.32, h: 0.3, fontSize: 12 });
+  s3.addText('DT/Const Breakthrough', { x: 0.9, y: 4.14, w: 3.8, h: 0.22, fontSize: 9, bold: true, color: GREEN });
+  s3.addText('With technical debt resolved, DT/Const achieved +55% saving \u2014 strongest area improvement, confirming growing velocity.', { x: 0.9, y: 4.36, w: 3.8, h: 0.44, fontSize: 7.5, color: '14532D' });
+  s3.addShape(pptx.ShapeType.rect, { x: 5.1, y: 4.1, w: 4.5, h: 0.78, fill: { color: 'F0FDF4' }, line: { color: GREEN, width: 1.5 } });
+  s3.addText('\uD83D\uDCC9', { x: 5.22, y: 4.18, w: 0.32, h: 0.3, fontSize: 12 });
+  s3.addText('Management Maturing', { x: 5.6, y: 4.14, w: 3.8, h: 0.22, fontSize: 9, bold: true, color: GREEN });
+  s3.addText('Management overhead dropped from 434.5h to 166h \u2014 a 62% reduction showing team coordination is maturing.', { x: 5.6, y: 4.36, w: 3.8, h: 0.44, fontSize: 7.5, color: '14532D' });
   addFooter(s3, 3);
 
   // ── Slide 4: R3 ──
@@ -249,31 +282,148 @@ function downloadPptx() {
     1.7,
     '* Saving excl. UAT R1 = 1-(4,854h / 7,337.9h) where 4,854h = total spent (6,965h) minus UAT R1 hours (2,111h).'
   );
+  // Consolidated insight boxes
+  s5.addShape(pptx.ShapeType.rect, { x: 0.4, y: 4.1, w: 4.5, h: 0.78, fill: { color: 'F0FDF4' }, line: { color: GREEN, width: 1.5 } });
+  s5.addText('\uD83D\uDCC8', { x: 0.52, y: 4.18, w: 0.32, h: 0.3, fontSize: 12 });
+  s5.addText('Utilization Trend', { x: 0.9, y: 4.14, w: 3.8, h: 0.22, fontSize: 9, bold: true, color: GREEN });
+  s5.addText('R1: 88% utilization (excl. UAT) \u2192 R2: 70% utilization. Declining rate signals higher team efficiency across releases.', { x: 0.9, y: 4.36, w: 3.8, h: 0.44, fontSize: 7.5, color: '14532D' });
+  s5.addShape(pptx.ShapeType.rect, { x: 5.1, y: 4.1, w: 4.5, h: 0.78, fill: { color: 'FFF7ED' }, line: { color: 'F97316', width: 1.5 } });
+  s5.addText('\u26A0\uFE0F', { x: 5.22, y: 4.18, w: 0.32, h: 0.3, fontSize: 12 });
+  s5.addText('Management Gap', { x: 5.6, y: 4.14, w: 3.8, h: 0.22, fontSize: 9, bold: true, color: 'F97316' });
+  s5.addText('889.5h spent vs 40h estimated across R1\u2013R3. 2,124% over budget \u2014 largest unbudgeted cost driver requiring immediate action.', { x: 5.6, y: 4.36, w: 3.8, h: 0.44, fontSize: 7.5, color: '7C2D12' });
   addFooter(s5, 5);
 
-  // ── Slide 6: Notes ──
+  // ── Slide 6: Velocity Trend ──
   const s6 = pptx.addSlide();
-  addHeader(s6, 'Notes & Clarifications', 'Context for accurate interpretation of the metrics');
-  const notes = [
-    { title: 'Data Extraction Date',            text: 'Metrics extracted on Friday, January 27th. Subsequent ALMA reporting may show updated figures. This report reflects a snapshot subject to change.' },
-    { title: 'Estimation Methodology – x4 Factor', text: 'All total estimations include a 4x multiplication factor. E.g. if a US is estimated at 10h, the total estimation used is 40h, covering full delivery effort.' },
-    { title: 'R1 – DT Hours & UAT R1',           text: 'DT hours in R1 (3,183h) include 2,111h of UAT R1: technical debt + UAT December + R2 UAT hours logged here because the R2 ticket had not been created.' },
-    { title: 'R2 – DT/Const Estimation',         text: 'R2 DT and Const estimation was duplicated. Only DT effort was used as the estimated figure. Real spent reflects both DT and Const actual hours.' },
-    { title: 'R3 – Still In Progress',           text: '2 USs are under technical revision and 5 are in functional analysis with no estimated values yet. These will be incorporated once complete.' }
-  ];
-  notes.forEach((n, i) => {
-    const y = 0.82 + i * 0.84;
-    s6.addShape(pptx.ShapeType.rect, { x: 0.4, y, w: 9.2, h: 0.76, fill: { color: i % 2 === 0 ? LIGHT : WHITE }, line: { color: PURPLE, width: 1.5 } });
-    s6.addText(n.title, { x: 0.6, y: y + 0.06, w: 8.8, h: 0.22, fontSize: 10, bold: true, color: PURPLE });
-    s6.addText(n.text,  { x: 0.6, y: y + 0.3,  w: 8.8, h: 0.38, fontSize: 8.5, color: '444444' });
-  });
+  addHeader(s6, 'Velocity Trend Analysis', '18pp efficiency improvement R1\u2192R2 \u00B7 Basis for forward simulation');
+  addMetrics(s6, [
+    { label: 'DT/Const Improvement', value: '26pp', hi: true },
+    { label: 'Analysis & DF Trend',  value: '\u2192 Est.', hi: true },
+    { label: 'Mgmt Overhead Drop',   value: '-62%', hi: true }
+  ], 0.82);
+  addTable(s6,
+    ['Area', 'R1 Utilization', 'R2 Utilization', 'Trend', 'Insight'],
+    [
+      ['DT / Const',    '71%',          '45%',   '-26pp', 'Strongest improvement \u2014 debt resolved'],
+      ['Testing',       '76%',          '83%',   '+7pp',  'Slight regression \u2014 monitor R3'],
+      ['Analysis & DF', '79%',          '98%',   '+19pp', 'Converging to estimate \u2014 scope growing'],
+      ['Management',    'Unbudgeted',   '166h',  '-62%',  'Team coordination maturing']
+    ],
+    1.7,
+    null
+  );
+  s6.addShape(pptx.ShapeType.rect, { x: 0.4, y: 3.9, w: 4.5, h: 0.9, fill: { color: 'F0FDF4' }, line: { color: GREEN, width: 1.5 } });
+  s6.addText('\uD83D\uDCCA', { x: 0.52, y: 3.96, w: 0.32, h: 0.3, fontSize: 12 });
+  s6.addText('Overall Velocity', { x: 0.9, y: 3.94, w: 3.8, h: 0.22, fontSize: 9, bold: true, color: GREEN });
+  s6.addText('The team improved efficiency by 18pp from R1 to R2, forming the basis for R4\u2013R6 projections.', { x: 0.9, y: 4.16, w: 3.8, h: 0.56, fontSize: 8, color: '14532D' });
+  s6.addShape(pptx.ShapeType.rect, { x: 5.1, y: 3.9, w: 4.5, h: 0.9, fill: { color: 'FFF7ED' }, line: { color: 'F97316', width: 1.5 } });
+  s6.addText('\uD83D\uDD0D', { x: 5.22, y: 3.96, w: 0.32, h: 0.3, fontSize: 12 });
+  s6.addText('Watch Areas', { x: 5.6, y: 3.94, w: 3.8, h: 0.22, fontSize: 9, bold: true, color: 'F97316' });
+  s6.addText('Testing showed slight regression (+7pp) and Analysis & DF is converging to estimate. Both need attention in R4.', { x: 5.6, y: 4.16, w: 3.8, h: 0.56, fontSize: 8, color: '7C2D12' });
   addFooter(s6, 6);
 
-  // ── Slide 7: Gràcies ──
+  // ── Slide 7: Forward Simulation ──
   const s7 = pptx.addSlide();
-  s7.background = { color: PURPLE };
-  s7.addText('Gràcies', { x: 0.8, y: 1.5, w: 8, h: 2, fontSize: 54, bold: true, color: WHITE });
-  s7.addText('Copyright © 2025 Accenture. All rights reserved.', { x: 0.8, y: 5.1, w: 9, h: 0.28, fontSize: 9, color: PURPLE_ACCENT });
+  addHeader(s7, 'R4\u2013R6 Forward Simulation', 'Based on current velocity trends with diminishing returns \u00B7 ~7,500h total budget');
+  addMetrics(s7, [
+    { label: 'Cumulative Saved R4\u2013R6', value: '~2,950h', hi: true },
+    { label: 'Avg Saving R4\u2013R6',       value: '+39%',    hi: true },
+    { label: 'Mgmt Budget / Release',       value: '150\u2013200h' }
+  ], 0.82);
+  addTable(s7,
+    ['Release', 'Estimated (h)', 'Projected Spent (h)', 'Projected Saving', 'Utilization', 'Note'],
+    [
+      ['R4',          '~2,500', '~1,625', '+35%',    '65%',  '+5pp improvement over R2'],
+      ['R5',          '~2,500', '~1,500', '+40%',    '60%',  'Team fully mature'],
+      ['R6',          '~2,500', '~1,425', '+43%',    '57%',  'Diminishing returns \u2014 near plateau'],
+      ['TOTAL R4\u2013R6', '~7,500', '~4,550', '~+2,950h', '~61%', 'Avg +39% saving']
+    ],
+    1.7,
+    null
+  );
+  s7.addShape(pptx.ShapeType.rect, { x: 0.4, y: 3.9, w: 4.5, h: 0.9, fill: { color: 'F0FDF4' }, line: { color: GREEN, width: 1.5 } });
+  s7.addText('\uD83D\uDCC8', { x: 0.52, y: 3.96, w: 0.32, h: 0.3, fontSize: 12 });
+  s7.addText('Efficiency Plateau', { x: 0.9, y: 3.94, w: 3.8, h: 0.22, fontSize: 9, bold: true, color: GREEN });
+  s7.addText('Projections show diminishing returns approaching R6 \u2014 team nears peak efficiency at ~57% utilization. R5 = full maturity.', { x: 0.9, y: 4.16, w: 3.8, h: 0.56, fontSize: 8, color: '14532D' });
+  s7.addShape(pptx.ShapeType.rect, { x: 5.1, y: 3.9, w: 4.5, h: 0.9, fill: { color: 'FFF7ED' }, line: { color: 'F97316', width: 1.5 } });
+  s7.addText('\uD83D\uDCBC', { x: 5.22, y: 3.96, w: 0.32, h: 0.3, fontSize: 12 });
+  s7.addText('Management Budget', { x: 5.6, y: 3.94, w: 3.8, h: 0.22, fontSize: 9, bold: true, color: 'F97316' });
+  s7.addText('Recommend formalising 150\u2013200h management allocation per release in future estimates to prevent recurring overruns.', { x: 5.6, y: 4.16, w: 3.8, h: 0.56, fontSize: 8, color: '7C2D12' });
+  addFooter(s7, 7);
 
-  pptx.writeFile({ fileName: 'Release_Performance_Metrics.pptx' });
+  // ── Slide 8: Risks & Recommendations ──
+  const s8 = pptx.addSlide();
+  addHeader(s8, 'Risks & Recommendations', 'Critical gaps to address to sustain projected efficiency gains');
+  // Column headers
+  s8.addShape(pptx.ShapeType.rect, { x: 0.4, y: 0.82, w: 4.4, h: 0.28, fill: { color: 'FEF2F2' }, line: { color: RED, width: 1 } });
+  s8.addText('\u26A0\uFE0F  Key Risks', { x: 0.55, y: 0.84, w: 4.1, h: 0.22, fontSize: 9, bold: true, color: RED });
+  s8.addShape(pptx.ShapeType.rect, { x: 5.1, y: 0.82, w: 4.5, h: 0.28, fill: { color: 'F0FDF4' }, line: { color: GREEN, width: 1 } });
+  s8.addText('\u2705  Recommendations', { x: 5.25, y: 0.84, w: 4.1, h: 0.22, fontSize: 9, bold: true, color: GREEN });
+  // Risks items
+  const risks = [
+    { icon: '\uD83D\uDCB0', title: 'Management Overrun',        text: '889.5h spent vs 40h estimated across R1\u2013R3 \u2014 2,124% over budget. Formalise a management allocation of 150\u2013200h per release.' },
+    { icon: '\uD83D\uDD01', title: 'Technical Debt Recurrence', text: "R1's 2,111h UAT burden shows how inherited debt can mask true performance. Implement technical debt tracking per release." },
+    { icon: '\uD83D\uDCCB', title: 'R3 Estimation Gaps',        text: '7 USs still without estimates \u2014 final R3 figures could shift the baseline for simulation.' },
+    { icon: '\uD83D\uDE80', title: 'Deploy at 0h Actual',       text: '186h estimated but 0h spent across all releases. Review if deploy effort is captured elsewhere or if estimates should be adjusted.' }
+  ];
+  risks.forEach((r, i) => {
+    const y = 1.18 + i * 0.86;
+    const bg = i % 2 === 0 ? 'FFFFFF' : 'F3F4F6';
+    s8.addShape(pptx.ShapeType.rect, { x: 0.4, y, w: 4.4, h: 0.78, fill: { color: bg }, line: { color: PURPLE, width: 1.5 } });
+    s8.addShape(pptx.ShapeType.rect, { x: 0.4, y, w: 0.06, h: 0.78, fill: { color: PURPLE } });
+    s8.addText(r.icon,  { x: 0.52, y: y + 0.08, w: 0.32, h: 0.3, fontSize: 13 });
+    s8.addText(r.title, { x: 0.9,  y: y + 0.06, w: 3.8,  h: 0.22, fontSize: 9, bold: true, color: PURPLE });
+    s8.addText(r.text,  { x: 0.9,  y: y + 0.28, w: 3.8,  h: 0.44, fontSize: 7.5, color: '444444' });
+  });
+  // Recommendations items
+  const recs = [
+    { icon: '\uD83D\uDCD0', title: 'Re-baseline Estimation Methodology', text: 'The current x4 multiplication factor overestimates by 30\u201340% for mature releases. Adjust to reflect actual team velocity.' },
+    { icon: '\uD83D\uDCC5', title: 'Quarterly Capacity Review',           text: 'Conduct quarterly reviews to validate simulation assumptions against actuals and recalibrate projections. Addressing risks now will protect the projected ~2,950h in cumulative R4\u2013R6 savings.' }
+  ];
+  recs.forEach((r, i) => {
+    const y = 1.18 + i * 1.72;
+    const bg = i % 2 === 0 ? 'FFFFFF' : 'F3F4F6';
+    s8.addShape(pptx.ShapeType.rect, { x: 5.1, y, w: 4.5, h: 1.64, fill: { color: bg }, line: { color: PURPLE, width: 1.5 } });
+    s8.addShape(pptx.ShapeType.rect, { x: 5.1, y, w: 0.06, h: 1.64, fill: { color: PURPLE } });
+    s8.addText(r.icon,  { x: 5.22, y: y + 0.12, w: 0.32, h: 0.3, fontSize: 13 });
+    s8.addText(r.title, { x: 5.6,  y: y + 0.1,  w: 3.8,  h: 0.28, fontSize: 9, bold: true, color: PURPLE });
+    s8.addText(r.text,  { x: 5.6,  y: y + 0.38, w: 3.8,  h: 1.18, fontSize: 8, color: '444444' });
+  });
+  addFooter(s8, 8);
+
+  // ── Slide 9: Notes ──
+  const s9 = pptx.addSlide();
+  addHeader(s9, 'Notes & Clarifications', 'Context for accurate interpretation of the metrics');
+  const notes = [
+    { icon: '\uD83D\uDCCC', title: 'Data Extraction Date',                   text: 'Metrics extracted on Tuesday, March 24th. Subsequent ALMA reporting may show updated figures. This report reflects a snapshot subject to change in the next cycle.' },
+    { icon: '\u2716\uFE0F', title: 'Estimation Methodology \u2013 x4 Factor', text: 'All total estimations include a 4x multiplication factor applied to the base technical estimation. E.g. if a US is technically estimated at 10h, the total estimation used is 40h, accounting for full delivery effort across all areas.' },
+    { icon: '\u26A0\uFE0F', title: 'R1 \u2013 DT Hours & UAT R1',             text: 'DT hours in R1 (3,183h) include 2,111h of UAT R1: (1) technical debt from previous UATs + UAT from December, and (2) R2 UAT hours logged here because the R2 ticket hadn\'t been created and ALMA UAT reporting wasn\'t aligned with the team.' },
+    { icon: '\u26A0\uFE0F', title: 'R2 \u2013 DT/Const Estimation',            text: 'R2 DT and Const estimation was duplicated. Only DT effort was used as the estimated figure. Real spent cost reflects both DT and Const actual hours.' },
+    { icon: '\uD83D\uDD04', title: 'R3 \u2013 Still In Progress',              text: '2 USs are under technical revision and 5 are in functional analysis with no estimated values. These will be incorporated once complete.' },
+    { icon: '\uD83D\uDCCA', title: 'Forward Simulation Assumptions',           text: 'R4\u2013R6 projections are based on observed velocity trends with diminishing returns. Assumes no new technical debt, stable team composition, and management budgets of 150\u2013200h per release.' }
+  ];
+  notes.forEach((n, i) => {
+    const y = 0.82 + i * 0.72;
+    const bg = i % 2 === 0 ? LIGHT : WHITE;
+    s9.addShape(pptx.ShapeType.rect, { x: 0.4, y, w: 9.2, h: 0.65, fill: { color: bg }, line: { color: PURPLE, width: 1.5 } });
+    s9.addShape(pptx.ShapeType.rect, { x: 0.4, y, w: 0.06, h: 0.65, fill: { color: PURPLE } });
+    s9.addText(n.icon,  { x: 0.52, y: y + 0.1,  w: 0.35, h: 0.3,  fontSize: 12 });
+    s9.addText(n.title, { x: 0.95, y: y + 0.05, w: 8.5,  h: 0.2,  fontSize: 9, bold: true, color: PURPLE });
+    s9.addText(n.text,  { x: 0.95, y: y + 0.26, w: 8.5,  h: 0.34, fontSize: 7.5, color: '444444' });
+  });
+  addFooter(s9, 9);
+
+  // ── Slide 10: Gràcies ──
+  const s10 = pptx.addSlide();
+  s10.background = { color: PURPLE };
+  // Watermark 1 — large faint filled arrow (wm1)
+  s10.addText('\u276F', { x: 5.5, y: -0.2, w: 5.5, h: 6, fontSize: 420, bold: true, color: PURPLE_DARK, align: 'center', valign: 'middle', transparency: 82 });
+  // Watermark 2 — medium outline-style arrow (wm2)
+  s10.addText('\u276F', { x: 6.2, y: 0.3, w: 3.5, h: 5, fontSize: 260, bold: false, color: WHITE, align: 'center', valign: 'middle', transparency: 50 });
+  // Main text
+  s10.addText('Gr\u00E0cies', { x: 0.8, y: 1.8, w: 6, h: 2, fontSize: 54, bold: true, color: WHITE });
+  // Footer copyright
+  s10.addText('Copyright \u00A9 2026 Accenture. All rights reserved.', { x: 0.8, y: 5.1, w: 9, h: 0.28, fontSize: 9, color: PURPLE_ACCENT });
+
+  pptx.writeFile({ fileName: 'Release_Performance_Analysis.pptx' });
 }

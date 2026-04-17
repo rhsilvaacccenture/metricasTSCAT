@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Release Performance Metrics – Accenture/CTTI</title>
+  <title>TSCAT Release Performance Analysis – Accenture/CTTI</title>
   <link rel="stylesheet" href="css/styles.css"/>
-  <script src="https://cdn.jsdelivr.net/npm/pptxgenjs@3.12.0/dist/pptxgen.bundle.js"></script>
 </head>
 <body>
 
@@ -13,7 +12,7 @@
 <div id="pw-overlay">
   <div id="pw-box">
     <svg width="36" height="43" viewBox="0 0 34 40"><path d="M0 0 L34 20 L0 40 L0 32 L22 20 L0 8 Z" fill="#7B2D8B"/></svg>
-    <h2>Release Performance Metrics</h2>
+    <h2>Release Performance Analysis</h2>
     <p>Accenture · CTTI</p>
     <input type="password" id="pw-input" placeholder="Enter password" onkeydown="if(event.key==='Enter')checkPw()"/>
     <button onclick="checkPw()">Access</button>
@@ -21,7 +20,7 @@
   </div>
 </div>
 
-<div id="slide-label">Slide <span id="snum">1</span> / 8 — <strong id="stitle">Cover</strong></div>
+<div id="slide-label">Slide <span id="snum">1</span> / 11 — <strong id="stitle">Cover</strong></div>
 
 <div id="controls">
   <button class="nav" id="prev" onclick="go(-1)">← Prev</button>
@@ -31,8 +30,11 @@
   <button onclick="goTo(3)">R2</button>
   <button onclick="goTo(4)">R3</button>
   <button onclick="goTo(5)">Consolidated</button>
-  <button onclick="goTo(6)">Notes</button>
-  <button onclick="goTo(7)">Gràcies</button>
+  <button onclick="goTo(6)">Velocity</button>
+  <button onclick="goTo(7)">Simulation</button>
+  <button onclick="goTo(8)">Risks</button>
+  <button onclick="goTo(9)">Notes</button>
+  <button onclick="goTo(10)">Gràcies</button>
   <button class="nav" id="next" onclick="go(1)">Next →</button>
   <button class="nav dl" onclick="downloadPptx()">⬇ Download PPTX</button>
   <button class="nav fs" id="fsBtn" onclick="toggleFullscreen()">⛶ Fullscreen</button>
@@ -44,10 +46,10 @@
   <div class="slide cover active" id="s0">
     <div class="top-bar"></div>
     <div class="body">
-      <h1>Release Performance<br>Metrics Report</h1>
-      <div class="sub">R1 · R2 · R3 — Estimated vs. Actual Effort Analysis</div>
+      <h1>Release Performance Analysis<br>&amp; Forward Simulation</h1>
+      <div class="sub">R1–R3 Actuals and R4–R6 Projections</div>
       <div class="meta">Extraction date: March 24, 2026 · Data subject to update</div>
-      <div class="meta" style="margin-top:4px;">Accenture</div>
+      <div class="meta" style="margin-top:4px;">Accenture · April 2026</div>
     </div>
     <div class="watermark">
       <svg width="320" height="380" viewBox="0 0 34 40"><path d="M0 0 L34 20 L0 40 L0 32 L22 20 L0 8 Z" fill="#7B2D8B"/></svg>
@@ -58,16 +60,13 @@
         <div style="width:1px;height:28px;background:#E5E7EB;"></div>
         <div>Generalitat de Catalunya<br><strong>Centre de Telecomunicacions i Tecnologies de la Informació</strong></div>
       </div>
-      <span class="copy">Copyright © 2025 Accenture. All rights reserved.</span>
+      <span class="copy">Copyright © 2026 Accenture. All rights reserved.</span>
     </footer>
   </div>
 
   <!-- ── SLIDE 1: SUMMARY ── -->
   <div class="slide" id="s1">
-    <div class="sec-header">
-      <h2>Executive Summary</h2>
-      <div class="sec-sub">Consolidated results across R1 + R2 + R3</div>
-    </div>
+    <div class="sec-header"><h2>Executive Summary</h2><div class="sec-sub">Consolidated results across R1 + R2 + R3 — clear upward efficiency trend</div></div>
     <div class="content">
       <div class="metrics">
         <div class="metric"><div class="mlabel">Total Estimated</div><div class="mval">7,337.9h</div></div>
@@ -77,9 +76,7 @@
         <div class="metric hi"><div class="mlabel">Saving excl. UAT R1</div><div class="mval">+34%</div></div>
       </div>
       <table>
-        <thead>
-          <tr><th>Release</th><th>Estimated (h)</th><th>Spent (h)</th><th>Deviation (h)</th><th>% Saving</th></tr>
-        </thead>
+        <thead><tr><th>Release</th><th>Estimated (h)</th><th>Spent (h)</th><th>Deviation (h)</th><th>% Saving</th></tr></thead>
         <tbody>
           <tr><td>R1 – Completed (raw)</td><td>2,347.5</td><td>4,183.0</td><td class="neg">-1,835.5</td><td class="neg">-78%</td></tr>
           <tr><td>R1 – Completed (excl. UAT R1)</td><td>2,347.5</td><td>2,072.0</td><td class="pos">+275.5</td><td class="pos">+12%</td></tr>
@@ -89,30 +86,21 @@
       </table>
       <div class="note"><span>*</span><span>R3 still in progress — 2 USs under technical revision, 5 in functional analysis. Final figures may vary.</span></div>
     </div>
-    <div class="foot">
-      <div class="fl"><svg width="14" height="17" viewBox="0 0 34 40"><path d="M0 0 L34 20 L0 40 L0 32 L22 20 L0 8 Z" fill="#7B2D8B"/></svg><span>Copyright © 2025 Accenture. All rights reserved.</span></div>
-      <span class="fr">1</span>
-    </div>
+    <div class="foot"><div class="fl"><svg width="14" height="17" viewBox="0 0 34 40"><path d="M0 0 L34 20 L0 40 L0 32 L22 20 L0 8 Z" fill="#7B2D8B"/></svg><span>Copyright © 2026 Accenture. All rights reserved.</span></div><span class="fr">1</span></div>
   </div>
 
   <!-- ── SLIDE 2: R1 ── -->
   <div class="slide" id="s2">
-    <div class="sec-header">
-      <h2>R1 — Release 1</h2>
-      <div class="sec-sub">Completed · UAT R1 included</div>
-    </div>
+    <div class="sec-header"><h2>R1 — Deep Dive · Lessons Learned</h2><div class="sec-sub">Completed · UAT R1 included · All estimates use x4 multiplication factor</div></div>
     <div class="content">
       <div class="metrics">
         <div class="metric"><div class="mlabel">Total Estimated</div><div class="mval">2,347.5h</div></div>
-        <div class="metric"><div class="mlabel">Total Spent (raw)</div><div class="mval">4,183.0h</div></div>
         <div class="metric"><div class="mlabel">Spent excl. UAT R1</div><div class="mval">2,072.0h</div></div>
         <div class="metric hi"><div class="mlabel">Saving excl. UAT</div><div class="mval">+12%</div></div>
-        <div class="metric hi"><div class="mlabel">UAT R1 Total Hours</div><div class="mval">2,111.0h</div></div>
+        <div class="metric hi"><div class="mlabel">UAT R1 Technical Debt</div><div class="mval">2,111.0h</div></div>
       </div>
       <table>
-        <thead>
-          <tr><th>Area</th><th>Estimated (h)</th><th>Spent (h)</th><th>Deviation (h)</th><th>% Saving</th></tr>
-        </thead>
+        <thead><tr><th>Area</th><th>Estimated (h)</th><th>Spent (h)</th><th>Deviation (h)</th><th>% Saving</th></tr></thead>
         <tbody>
           <tr><td>Analysis &amp; DF</td><td>151.5</td><td>119.5</td><td class="pos">+32.0</td><td class="pos">+21%</td></tr>
           <tr><td>DT / Const ⚠️</td><td>1,515.0</td><td>3,183.0</td><td class="neg">-1,668.0</td><td class="neg">-110%</td></tr>
@@ -123,170 +111,193 @@
           <tr><td>TOTAL</td><td>2,347.5</td><td>4,183.0</td><td class="neg">-1,835.5</td><td>-78% raw / +12% excl. UAT</td></tr>
         </tbody>
       </table>
-      <div class="note"><span>⚠️</span><span>DT hours (3,183h) include 2,111h of UAT R1: technical debt from previous UATs + UAT from December + R2 UAT hours logged here due to R2 ticket not being created in time. UAT R1: Est. 1,515h · Spent 1,072h · Saving +443h (+29%).</span></div>
+      <div class="insight-row">
+        <div class="insight green"><div class="ins-title">💡 Key Insight</div><div class="ins-text">Without the UAT burden, actual DT/Const effort was ~1,072h vs 1,515h estimated — revealing <strong>+29% real team efficiency</strong>.</div></div>
+        <div class="insight orange"><div class="ins-title">🚩 Management Flag</div><div class="ins-text"><strong>434.5h of unbudgeted management effort</strong> highlights a gap in the estimation framework that must be addressed for future releases.</div></div>
+      </div>
     </div>
-    <div class="foot">
-      <div class="fl"><svg width="14" height="17" viewBox="0 0 34 40"><path d="M0 0 L34 20 L0 40 L0 32 L22 20 L0 8 Z" fill="#7B2D8B"/></svg><span>Copyright © 2025 Accenture. All rights reserved.</span></div>
-      <span class="fr">2</span>
-    </div>
+    <div class="foot"><div class="fl"><svg width="14" height="17" viewBox="0 0 34 40"><path d="M0 0 L34 20 L0 40 L0 32 L22 20 L0 8 Z" fill="#7B2D8B"/></svg><span>Copyright © 2026 Accenture. All rights reserved.</span></div><span class="fr">2</span></div>
   </div>
 
   <!-- ── SLIDE 3: R2 ── -->
   <div class="slide" id="s3">
-    <div class="sec-header">
-      <h2>R2 — Release 2</h2>
-      <div class="sec-sub">Completed</div>
-    </div>
+    <div class="sec-header"><h2>R2 — Deep Dive · Efficiency Gains</h2><div class="sec-sub">Completed · Technical debt resolved · Strongest DT/Const improvement</div></div>
     <div class="content">
       <div class="metrics">
         <div class="metric"><div class="mlabel">Total Estimated</div><div class="mval">2,315.3h</div></div>
         <div class="metric"><div class="mlabel">Total Spent</div><div class="mval">1,611.0h</div></div>
-        <div class="metric"><div class="mlabel">Deviation</div><div class="mval">+704.3h</div></div>
-        <div class="metric hi"><div class="mlabel">% Saving</div><div class="mval">+30%</div></div>
+        <div class="metric"><div class="mlabel">Hours Saved</div><div class="mval">704.3h</div></div>
+        <div class="metric hi"><div class="mlabel">Overall Saving</div><div class="mval">+30%</div></div>
       </div>
       <table>
-        <thead>
-          <tr><th>Area</th><th>Estimated (h)</th><th>Spent (h)</th><th>Deviation (h)</th><th>% Saving</th></tr>
-        </thead>
+        <thead><tr><th>Area</th><th>Estimated (h)</th><th>Spent (h)</th><th>Deviation (h)</th><th>% Saving</th></tr></thead>
         <tbody>
           <tr><td>Analysis &amp; DF</td><td>220.5</td><td>215.5</td><td class="pos">+5.0</td><td class="pos">+2%</td></tr>
-          <tr><td>DT / Const ⚠️</td><td>1,102.5</td><td>498.0</td><td class="pos">+604.5</td><td class="pos">+55%</td></tr>
+          <tr><td>DT / Const ⚠️</td><td>1,102.5</td><td>498.0</td><td class="pos">+604.5</td><td class="pos">+55% ⭐</td></tr>
           <tr><td>Testing</td><td>771.8</td><td>643.5</td><td class="pos">+128.3</td><td class="pos">+17%</td></tr>
           <tr><td>Deploy</td><td>110.25</td><td>0</td><td class="pos">+110.25</td><td class="pos">+100%</td></tr>
           <tr><td>Production</td><td>110.25</td><td>88.0</td><td class="pos">+22.25</td><td class="pos">+20%</td></tr>
-          <tr><td>Management</td><td>0</td><td>166.0</td><td class="neg">-166.0</td><td>—</td></tr>
+          <tr><td>Management</td><td>0</td><td>166.0</td><td class="neg">-166.0</td><td>— (↓62% vs R1)</td></tr>
           <tr><td>TOTAL</td><td>2,315.3</td><td>1,611.0</td><td class="pos">+704.3</td><td class="pos">+30%</td></tr>
         </tbody>
       </table>
-      <div class="note"><span>⚠️</span><span>R2 DT/Const estimation was duplicated. Only DT effort was considered in the estimated figure. Real spent cost reflects both DT and Const actual hours combined.</span></div>
+      <div class="insight-row">
+        <div class="insight green"><div class="ins-title">⭐ DT/Const Breakthrough</div><div class="ins-text">With technical debt resolved, DT/Const achieved <strong>+55% saving</strong> — the strongest area improvement, confirming the team's growing velocity.</div></div>
+        <div class="insight green"><div class="ins-title">📉 Management Maturing</div><div class="ins-text">Management overhead dropped from 434.5h to 166h — a <strong>62% reduction</strong> showing team coordination is maturing.</div></div>
+      </div>
     </div>
-    <div class="foot">
-      <div class="fl"><svg width="14" height="17" viewBox="0 0 34 40"><path d="M0 0 L34 20 L0 40 L0 32 L22 20 L0 8 Z" fill="#7B2D8B"/></svg><span>Copyright © 2025 Accenture. All rights reserved.</span></div>
-      <span class="fr">3</span>
-    </div>
+    <div class="foot"><div class="fl"><svg width="14" height="17" viewBox="0 0 34 40"><path d="M0 0 L34 20 L0 40 L0 32 L22 20 L0 8 Z" fill="#7B2D8B"/></svg><span>Copyright © 2026 Accenture. All rights reserved.</span></div><span class="fr">3</span></div>
   </div>
 
   <!-- ── SLIDE 4: R3 ── -->
   <div class="slide" id="s4">
-    <div class="sec-header">
-      <h2>R3 — Release 3</h2>
-      <div class="sec-sub">🔄 In Progress</div>
-    </div>
+    <div class="sec-header"><h2>R3 — Status · In Progress</h2><div class="sec-sub">🔄 Partial data · March 24, 2026 extraction</div></div>
     <div class="content">
       <div class="metrics">
         <div class="metric"><div class="mlabel">Total Estimated</div><div class="mval">2,674.4h</div></div>
         <div class="metric"><div class="mlabel">Spent So Far</div><div class="mval">1,171.0h</div></div>
         <div class="metric"><div class="mlabel">Deviation (partial)</div><div class="mval">+1,503.4h</div></div>
         <div class="metric hi"><div class="mlabel">% Saving (partial)</div><div class="mval">+56%</div></div>
+        <div class="metric hi" style="background:#DC2626;"><div class="mlabel">Mgmt Overrun</div><div class="mval">7x</div></div>
       </div>
       <table>
-        <thead>
-          <tr><th>Area</th><th>Estimated (h)</th><th>Spent (h)</th><th>Deviation (h)</th><th>% Saving</th></tr>
-        </thead>
+        <thead><tr><th>Area</th><th>Estimated (h)</th><th>Spent (h)</th><th>Deviation (h)</th><th>% Saving</th><th>Status</th></tr></thead>
         <tbody>
-          <tr><td>Analysis &amp; DF</td><td>494.8</td><td>373.0</td><td class="pos">+121.8</td><td class="pos">+25%</td></tr>
-          <tr><td>DT / Const</td><td>655.2</td><td>264.5</td><td class="pos">+390.7</td><td class="pos">+60%</td></tr>
-          <tr><td>Testing</td><td>989.6</td><td>221.5</td><td class="pos">+768.1</td><td class="pos">+78%</td></tr>
-          <tr><td>Deploy</td><td>0</td><td>0</td><td>0</td><td>—</td></tr>
-          <tr><td>Production</td><td>494.8</td><td>23.0</td><td class="pos">+471.8</td><td class="pos">+95%</td></tr>
-          <tr><td>Management</td><td>40.0</td><td>289.0</td><td class="neg">-249.0</td><td class="neg">-623%</td></tr>
-          <tr><td>TOTAL</td><td>2,674.4</td><td>1,171.0</td><td class="pos">+1,503.4</td><td class="pos">+56%</td></tr>
+          <tr><td>Analysis &amp; DF</td><td>494.8</td><td>373.0</td><td class="pos">+121.8</td><td class="pos">+25%</td><td>✅ Done</td></tr>
+          <tr><td>DT / Const</td><td>655.2</td><td>264.5</td><td class="pos">+390.7</td><td class="pos">+60%</td><td>✅ Done</td></tr>
+          <tr><td>Testing</td><td>989.6</td><td>221.5</td><td class="pos">+768.1</td><td class="pos">+78%</td><td>🔄 Active</td></tr>
+          <tr><td>Deploy</td><td>0</td><td>0</td><td>0</td><td>—</td><td>⏳ Pending</td></tr>
+          <tr><td>Production</td><td>494.8</td><td>23.0</td><td class="pos">+471.8</td><td class="pos">+95%</td><td>🔄 Active</td></tr>
+          <tr><td>Management</td><td>40.0</td><td>289.0</td><td class="neg">-249.0</td><td class="neg">-623%</td><td>⚠️ Review</td></tr>
+          <tr><td>TOTAL</td><td>2,674.4</td><td>1,171.0</td><td class="pos">+1,503.4</td><td class="pos">+56%</td><td>🔄 In Progress</td></tr>
         </tbody>
       </table>
-      <div class="note"><span>⚠️</span><span>R3 is still ongoing. 2 User Stories are currently under technical revision and 5 are in functional analysis with no estimated values yet. Final metrics will be updated in the next extraction cycle.</span></div>
+      <div class="note"><span>⚠️</span><span>2 USs under technical revision · 5 USs in functional analysis with no estimates yet · Management hours already 7x the estimate (289h vs 40h) — requires governance review.</span></div>
     </div>
-    <div class="foot">
-      <div class="fl"><svg width="14" height="17" viewBox="0 0 34 40"><path d="M0 0 L34 20 L0 40 L0 32 L22 20 L0 8 Z" fill="#7B2D8B"/></svg><span>Copyright © 2025 Accenture. All rights reserved.</span></div>
-      <span class="fr">4</span>
-    </div>
+    <div class="foot"><div class="fl"><svg width="14" height="17" viewBox="0 0 34 40"><path d="M0 0 L34 20 L0 40 L0 32 L22 20 L0 8 Z" fill="#7B2D8B"/></svg><span>Copyright © 2026 Accenture. All rights reserved.</span></div><span class="fr">4</span></div>
   </div>
 
   <!-- ── SLIDE 5: CONSOLIDATED ── -->
   <div class="slide" id="s5">
-    <div class="sec-header">
-      <h2>R1 + R2 + R3 — Consolidated View</h2>
-      <div class="sec-sub">Combined effort across all releases</div>
-    </div>
+    <div class="sec-header"><h2>R1 + R2 + R3 — Consolidated Capacity Analysis</h2><div class="sec-sub">Testing &amp; Production consistently outperform · Management is the largest unbudgeted cost driver</div></div>
     <div class="content">
       <div class="metrics">
         <div class="metric"><div class="mlabel">Total Estimated</div><div class="mval">7,337.9h</div></div>
         <div class="metric"><div class="mlabel">Total Spent</div><div class="mval">6,965.0h</div></div>
-        <div class="metric hi"><div class="mlabel">Saving (raw)</div><div class="mval">+5%</div></div>
-        <div class="metric hi"><div class="mlabel">Saving excl. UAT R1</div><div class="mval">+34%</div></div>
+        <div class="metric hi"><div class="mlabel">Testing Saving</div><div class="mval">+39%</div></div>
+        <div class="metric hi"><div class="mlabel">Production Saving</div><div class="mval">+53%</div></div>
+        <div class="metric hi" style="background:#DC2626;"><div class="mlabel">Mgmt Over Budget</div><div class="mval">2,124%</div></div>
       </div>
       <table>
-        <thead>
-          <tr><th>Area</th><th>Estimated (h)</th><th>Spent (h)</th><th>Deviation (h)</th><th>% Saving</th><th>% w/ UAT R1</th></tr>
-        </thead>
+        <thead><tr><th>Area</th><th>Estimated (h)</th><th>Spent (h)</th><th>Deviation (h)</th><th>% Saving</th><th>% w/ UAT R1</th></tr></thead>
         <tbody>
           <tr><td>Analysis &amp; DF</td><td>866.8</td><td>708.0</td><td class="pos">+158.8</td><td class="pos">+16%</td><td>—</td></tr>
           <tr><td>DT / Const ⚠️</td><td>3,272.7</td><td>3,945.5</td><td class="neg">-672.8</td><td class="pos">+48%</td><td class="pos">+1%</td></tr>
           <tr><td>Testing</td><td>2,291.6</td><td>1,269.0</td><td class="pos">+1,022.6</td><td class="pos">+39%</td><td>—</td></tr>
           <tr><td>Deploy</td><td>186.0</td><td>0.0</td><td class="pos">+186.0</td><td class="pos">+100%</td><td>—</td></tr>
           <tr><td>Production</td><td>680.8</td><td>153.0</td><td class="pos">+527.8</td><td class="pos">+53%</td><td>—</td></tr>
-          <tr><td>Management</td><td>40.0</td><td>889.5</td><td class="neg">-849.5</td><td>—</td><td>—</td></tr>
+          <tr><td>Management</td><td>40.0</td><td>889.5</td><td class="neg">-849.5</td><td class="neg">-2,124%</td><td>—</td></tr>
           <tr><td>TOTAL</td><td>7,337.9</td><td>6,965.0</td><td class="pos">+372.9</td><td>+5% raw</td><td>+34% excl. UAT R1</td></tr>
         </tbody>
       </table>
-      <div class="note"><span>*</span><span>Saving excl. UAT R1 = 1-(4,854h/7,337.9h) where 4,854h = total spent (6,965h) minus UAT R1 hours (2,111h).</span></div>
+      <div class="insight-row">
+        <div class="insight green"><div class="ins-title">📈 Utilization Trend</div><div class="ins-text">R1: <strong>88% utilization</strong> (excl. UAT) → R2: <strong>70% utilization</strong>. Declining utilization rate signals higher team efficiency across releases.</div></div>
+        <div class="insight orange"><div class="ins-title">⚠️ Management Gap</div><div class="ins-text">889.5h spent vs 40h estimated across R1–R3. <strong>2,124% over budget</strong> — the largest unbudgeted cost driver requiring immediate governance action.</div></div>
+      </div>
     </div>
-    <div class="foot">
-      <div class="fl"><svg width="14" height="17" viewBox="0 0 34 40"><path d="M0 0 L34 20 L0 40 L0 32 L22 20 L0 8 Z" fill="#7B2D8B"/></svg><span>Copyright © 2025 Accenture. All rights reserved.</span></div>
-      <span class="fr">5</span>
-    </div>
+    <div class="foot"><div class="fl"><svg width="14" height="17" viewBox="0 0 34 40"><path d="M0 0 L34 20 L0 40 L0 32 L22 20 L0 8 Z" fill="#7B2D8B"/></svg><span>Copyright © 2026 Accenture. All rights reserved.</span></div><span class="fr">5</span></div>
   </div>
 
-  <!-- ── SLIDE 6: NOTES ── -->
+  <!-- ── SLIDE 6: VELOCITY TREND ── -->
   <div class="slide" id="s6">
-    <div class="sec-header">
-      <h2>Notes &amp; Clarifications</h2>
-      <div class="sec-sub">Context for accurate interpretation of the metrics</div>
-    </div>
+    <div class="sec-header"><h2>Velocity Trend Analysis</h2><div class="sec-sub">18pp efficiency improvement R1→R2 · Basis for forward simulation</div></div>
     <div class="content">
-      <div class="note-item">
-        <span class="ni-icon">📌</span>
-        <div>
-          <div class="ni-title">Data Extraction Date</div>
-          <div class="ni-text">Metrics extracted on Tuesday, March 24th. Subsequent ALMA reporting may show updated figures. This report reflects a snapshot subject to change in the next cycle.</div>
-        </div>
+      <div class="metrics">
+        <div class="metric hi"><div class="mlabel">DT/Const Improvement</div><div class="mval">26pp</div></div>
+        <div class="metric hi"><div class="mlabel">Analysis &amp; DF Trend</div><div class="mval">→ Est.</div></div>
+        <div class="metric hi"><div class="mlabel">Mgmt Overhead Drop</div><div class="mval">-62%</div></div>
       </div>
-      <div class="note-item">
-        <span class="ni-icon">✖️</span>
-        <div>
-          <div class="ni-title">Estimation Methodology – x4 Factor</div>
-          <div class="ni-text">All total estimations include a 4x multiplication factor applied to the base technical estimation. E.g. if a US is technically estimated at 10h, the total estimation used is 40h, accounting for full delivery effort across all areas.</div>
-        </div>
-      </div>
-      <div class="note-item">
-        <span class="ni-icon">⚠️</span>
-        <div>
-          <div class="ni-title">R1 – DT Hours &amp; UAT R1</div>
-          <div class="ni-text">DT hours in R1 (3,183h) include 2,111h of UAT R1: (1) technical debt from previous UATs + UAT from December, and (2) R2 UAT hours logged here because the R2 ticket hadn't been created and ALMA UAT reporting wasn't aligned with the team.</div>
-        </div>
-      </div>
-      <div class="note-item">
-        <span class="ni-icon">⚠️</span>
-        <div>
-          <div class="ni-title">R2 – DT/Const Estimation</div>
-          <div class="ni-text">R2 DT and Const estimation was duplicated. Only DT effort was used as the estimated figure. Real spent cost reflects both DT and Const actual hours.</div>
-        </div>
-      </div>
-      <div class="note-item">
-        <span class="ni-icon">🔄</span>
-        <div>
-          <div class="ni-title">R3 – Still In Progress</div>
-          <div class="ni-text">2 USs are under technical revision and 5 are in functional analysis with no estimated values. These will be incorporated once complete.</div>
-        </div>
+      <table>
+        <thead><tr><th>Area</th><th>R1 Utilization</th><th>R2 Utilization</th><th>Trend</th><th>Insight</th></tr></thead>
+        <tbody>
+          <tr><td>DT / Const</td><td>71%</td><td>45%</td><td class="pos">-26pp ↓</td><td>Strongest improvement — debt resolved</td></tr>
+          <tr><td>Testing</td><td>76%</td><td>83%</td><td class="neg">+7pp ↑</td><td>Slight regression — monitor R3</td></tr>
+          <tr><td>Analysis &amp; DF</td><td>79%</td><td>98%</td><td class="neg">+19pp ↑</td><td>Converging to estimate — scope growing</td></tr>
+          <tr><td>Management</td><td>Unbudgeted</td><td>166h</td><td class="pos">↓ 62%</td><td>Team coordination maturing</td></tr>
+        </tbody>
+      </table>
+      <div class="insight-row">
+        <div class="insight green"><div class="ins-title">📊 Overall Velocity</div><div class="ins-text">The team's efficiency improved by <strong>18 percentage points from R1 to R2</strong>, establishing a clear velocity trend that forms the basis for R4–R6 projections.</div></div>
+        <div class="insight orange"><div class="ins-title">🔍 Watch Areas</div><div class="ins-text">Testing showed a slight regression (+7pp utilization) and Analysis &amp; DF is converging to estimate. Both areas require attention in R4 planning.</div></div>
       </div>
     </div>
-    <div class="foot">
-      <div class="fl"><svg width="14" height="17" viewBox="0 0 34 40"><path d="M0 0 L34 20 L0 40 L0 32 L22 20 L0 8 Z" fill="#7B2D8B"/></svg><span>Copyright © 2025 Accenture. All rights reserved.</span></div>
-      <span class="fr">6</span>
-    </div>
+    <div class="foot"><div class="fl"><svg width="14" height="17" viewBox="0 0 34 40"><path d="M0 0 L34 20 L0 40 L0 32 L22 20 L0 8 Z" fill="#7B2D8B"/></svg><span>Copyright © 2026 Accenture. All rights reserved.</span></div><span class="fr">6</span></div>
   </div>
 
-  <!-- ── SLIDE 7: GRÀCIES ── -->
-  <div class="slide gracies" id="s7">
+  <!-- ── SLIDE 7: FORWARD SIMULATION ── -->
+  <div class="slide" id="s7">
+    <div class="sec-header"><h2>R4–R6 Forward Simulation</h2><div class="sec-sub">Based on current velocity trends with diminishing returns · ~7,500h total budget</div></div>
+    <div class="content">
+      <div class="metrics">
+        <div class="metric hi"><div class="mlabel">Cumulative Saved R4–R6</div><div class="mval">~2,950h</div></div>
+        <div class="metric hi"><div class="mlabel">Avg Saving R4–R6</div><div class="mval">+39%</div></div>
+        <div class="metric"><div class="mlabel">Mgmt Budget / Release</div><div class="mval">150–200h</div></div>
+      </div>
+      <table>
+        <thead><tr><th>Release</th><th>Estimated (h)</th><th>Projected Spent (h)</th><th>Projected Saving</th><th>Utilization</th><th>Note</th></tr></thead>
+        <tbody>
+          <tr><td>R4</td><td>~2,500</td><td>~1,625</td><td class="pos">+35%</td><td>65%</td><td>+5pp improvement over R2</td></tr>
+          <tr><td>R5</td><td>~2,500</td><td>~1,500</td><td class="pos">+40%</td><td>60%</td><td>Team fully mature</td></tr>
+          <tr><td>R6</td><td>~2,500</td><td>~1,425</td><td class="pos">+43%</td><td>57%</td><td>Diminishing returns — near plateau</td></tr>
+          <tr><td>TOTAL R4–R6</td><td>~7,500</td><td>~4,550</td><td class="pos">~+2,950h</td><td>~61%</td><td>Avg +39% saving</td></tr>
+        </tbody>
+      </table>
+      <div class="insight-row">
+        <div class="insight green"><div class="ins-title">📈 Efficiency Plateau</div><div class="ins-text">Projections show <strong>diminishing returns</strong> approaching R6 — the team nears peak efficiency at ~57% utilization. R5 represents full team maturity.</div></div>
+        <div class="insight orange"><div class="ins-title">💼 Management Budget</div><div class="ins-text">Recommend formalising a <strong>150–200h management allocation per release</strong> in future estimates to prevent recurring overruns.</div></div>
+      </div>
+    </div>
+    <div class="foot"><div class="fl"><svg width="14" height="17" viewBox="0 0 34 40"><path d="M0 0 L34 20 L0 40 L0 32 L22 20 L0 8 Z" fill="#7B2D8B"/></svg><span>Copyright © 2026 Accenture. All rights reserved.</span></div><span class="fr">7</span></div>
+  </div>
+
+  <!-- ── SLIDE 8: RISKS & RECOMMENDATIONS ── -->
+  <div class="slide" id="s8">
+    <div class="sec-header"><h2>Risks &amp; Recommendations</h2><div class="sec-sub">Critical gaps to address to sustain projected efficiency gains</div></div>
+    <div class="content">
+      <div class="two-col">
+        <div>
+          <div class="col-title neg">⚠️ Key Risks</div>
+          <div class="note-item"><span class="ni-icon">💰</span><div><div class="ni-title">Management Overrun</div><div class="ni-text">889.5h spent vs 40h estimated across R1–R3 — <strong>2,124% over budget</strong>. Formalise a management allocation of 150–200h per release.</div></div></div>
+          <div class="note-item"><span class="ni-icon">🔁</span><div><div class="ni-title">Technical Debt Recurrence</div><div class="ni-text">R1's 2,111h UAT burden shows how inherited debt can mask true performance. Implement technical debt tracking per release.</div></div></div>
+          <div class="note-item"><span class="ni-icon">📋</span><div><div class="ni-title">R3 Estimation Gaps</div><div class="ni-text">7 USs still without estimates — final R3 figures could shift the baseline for simulation.</div></div></div>
+          <div class="note-item"><span class="ni-icon">🚀</span><div><div class="ni-title">Deploy at 0h Actual</div><div class="ni-text">186h estimated but 0h spent across all releases. Review if deploy effort is captured elsewhere or estimates should be adjusted.</div></div></div>
+        </div>
+        <div>
+          <div class="col-title pos">✅ Recommendations</div>
+          <div class="note-item"><span class="ni-icon">📐</span><div><div class="ni-title">Re-baseline Estimation Methodology</div><div class="ni-text">The current <strong>x4 multiplication factor overestimates by 30–40%</strong> for mature releases. Adjust to reflect actual team velocity.</div></div></div>
+          <div class="note-item"><span class="ni-icon">📅</span><div><div class="ni-title">Quarterly Capacity Review</div><div class="ni-text">Conduct quarterly reviews to validate simulation assumptions against actuals and recalibrate projections. Addressing risks now will protect the projected <strong>~2,950h in cumulative R4–R6 savings</strong>.</div></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="foot"><div class="fl"><svg width="14" height="17" viewBox="0 0 34 40"><path d="M0 0 L34 20 L0 40 L0 32 L22 20 L0 8 Z" fill="#7B2D8B"/></svg><span>Copyright © 2026 Accenture. All rights reserved.</span></div><span class="fr">8</span></div>
+  </div>
+
+  <!-- ── SLIDE 9: NOTES ── -->
+  <div class="slide" id="s9">
+    <div class="sec-header"><h2>Notes &amp; Clarifications</h2><div class="sec-sub">Context for accurate interpretation of the metrics</div></div>
+    <div class="content">
+      <div class="note-item"><span class="ni-icon">📌</span><div><div class="ni-title">Data Extraction Date</div><div class="ni-text">Metrics extracted on Tuesday, March 24th. Subsequent ALMA reporting may show updated figures. This report reflects a snapshot subject to change in the next cycle.</div></div></div>
+      <div class="note-item"><span class="ni-icon">✖️</span><div><div class="ni-title">Estimation Methodology – x4 Factor</div><div class="ni-text">All total estimations include a 4x multiplication factor applied to the base technical estimation. E.g. if a US is technically estimated at 10h, the total estimation used is 40h, accounting for full delivery effort across all areas.</div></div></div>
+      <div class="note-item"><span class="ni-icon">⚠️</span><div><div class="ni-title">R1 – DT Hours &amp; UAT R1</div><div class="ni-text">DT hours in R1 (3,183h) include 2,111h of UAT R1: (1) technical debt from previous UATs + UAT from December, and (2) R2 UAT hours logged here because the R2 ticket hadn't been created and ALMA UAT reporting wasn't aligned with the team.</div></div></div>
+      <div class="note-item"><span class="ni-icon">⚠️</span><div><div class="ni-title">R2 – DT/Const Estimation</div><div class="ni-text">R2 DT and Const estimation was duplicated. Only DT effort was used as the estimated figure. Real spent cost reflects both DT and Const actual hours.</div></div></div>
+      <div class="note-item"><span class="ni-icon">🔄</span><div><div class="ni-title">R3 – Still In Progress</div><div class="ni-text">2 USs are under technical revision and 5 are in functional analysis with no estimated values. These will be incorporated once complete.</div></div></div>
+      <div class="note-item"><span class="ni-icon">📊</span><div><div class="ni-title">Forward Simulation Assumptions</div><div class="ni-text">R4–R6 projections are based on observed velocity trends with diminishing returns. Assumes no new technical debt, stable team composition, and management budgets of 150–200h per release.</div></div></div>
+    </div>
+    <div class="foot"><div class="fl"><svg width="14" height="17" viewBox="0 0 34 40"><path d="M0 0 L34 20 L0 40 L0 32 L22 20 L0 8 Z" fill="#7B2D8B"/></svg><span>Copyright © 2026 Accenture. All rights reserved.</span></div><span class="fr">9</span></div>
+  </div>
+
+  <!-- ── SLIDE 10: GRÀCIES ── -->
+  <div class="slide gracies" id="s10">
     <h1>Gràcies</h1>
     <div class="wm1"><svg width="420" height="500" viewBox="0 0 34 40"><path d="M0 0 L34 20 L0 40 L0 32 L22 20 L0 8 Z" fill="#fff"/></svg></div>
     <div class="wm2"><svg width="260" height="310" viewBox="0 0 34 40"><path d="M0 0 L34 20 L0 40 L0 32 L22 20 L0 8 Z" fill="none" stroke="#fff" stroke-width="1.5"/></svg></div>

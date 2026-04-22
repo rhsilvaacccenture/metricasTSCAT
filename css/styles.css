@@ -103,6 +103,16 @@ tbody tr:last-child td{background:var(--mid);font-weight:700;}
 /* ── Keyboard hint ── */
 #kb-hint{font-size:10px;color:#555;margin-top:8px;}
 
+/* ── Upload button ── */
+#controls .nav.ul{background:#7C3AED;margin-left:4px;}
+
+/* ── Upload status bar ── */
+#upload-status{font-size:11px;padding:4px 14px;border-radius:4px;margin-bottom:6px;display:none;max-width:900px;width:100%;text-align:center;}
+#upload-status:not(:empty){display:block;}
+#upload-status.status-loading{background:#1e3a5f;color:#93c5fd;}
+#upload-status.status-ok{background:#14532d;color:#86efac;}
+#upload-status.status-error{background:#7f1d1d;color:#fca5a5;}
+
 /* ── Insight row ── */
 .insight-row{display:flex;gap:8px;}
 .insight{flex:1;border-radius:4px;padding:8px 10px;font-size:clamp(8px,1vw,10px);line-height:1.5;border-left:3px solid;}

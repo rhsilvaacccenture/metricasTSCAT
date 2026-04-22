@@ -1,3 +1,6 @@
+// ── Dynamic report data (set by ALMARenderer when Excel is loaded) ──
+window.reportData = null;
+
 // ── Password protection ──
 (function(){
   if(sessionStorage.getItem('alma_auth') === '1') {
@@ -61,6 +64,37 @@ document.addEventListener('fullscreenchange', () => {
   btn.textContent = document.fullscreenElement ? '✕ Exit Fullscreen' : '⛶ Fullscreen';
 });
 
+// ── Excel Upload Handler ──
+function handleExcelUpload(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const statusEl = document.getElementById('upload-status');
+  statusEl.className = 'status-loading';
+  statusEl.textContent = '\u23F3 Parsing ' + file.name + '\u2026';
+
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      const parsed = ALMAParser.parseALMAExcel(e.target.result);
+      ALMARenderer.renderFromData(parsed);  // updates DOM + sets window.reportData
+      const n = parsed.releaseOrder.length;
+      statusEl.className = 'status-ok';
+      statusEl.textContent = '\u2705 ' + file.name + ' loaded \u00B7 ' +
+        n + ' release' + (n !== 1 ? 's' : '') + ' detected \u00B7 All slides updated';
+    } catch (err) {
+      statusEl.className = 'status-error';
+      statusEl.textContent = '\u274C Parse error: ' + err.message;
+      console.error('[ALMA Parser]', err);
+    }
+  };
+  reader.onerror = function() {
+    statusEl.className = 'status-error';
+    statusEl.textContent = '\u274C Could not read file.';
+  };
+  reader.readAsArrayBuffer(file);
+  event.target.value = '';  // allow re-uploading same file
+}
+
 // ── PPTX Export ──
 function downloadPptx() {
   const pptx = new PptxGenJS();
@@ -87,11 +121,32 @@ function downloadPptx() {
   function addMetrics(slide, metrics, y) {
     const w = 9.2 / metrics.length;
     metrics.forEach((m, i) => {
-      const x = 0.4 + i * w;
-      slide.addShape(pptx.ShapeType.roundRect, { x, y, w: w - 0.12, h: 0.72, fill: { color: m.hi ? PURPLE : LIGHT }, rectRadius: 0.05 });
-      slide.addText(m.label, { x, y: y + 0.05, w: w - 0.12, h: 0.2, fontSize: 7, bold: true, color: m.hi ? PURPLE_ACCENT : GRAY, align: 'center' });
-      slide.addText(m.value, { x, y: y + 0.27, w: w - 0.12, h: 0.35, fontSize: 15, bold: true, color: m.hi ? WHITE : BLACK, align: 'center' });
+      const x   = 0.4 + i * w;
+      const bg  = m.hi ? (m.negative ? RED : PURPLE) : LIGHT;
+      const lc  = m.hi ? PURPLE_ACCENT : GRAY;
+      const vc  = m.hi ? WHITE : BLACK;
+      slide.addShape(pptx.ShapeType.roundRect, { x, y, w: w - 0.12, h: 0.72, fill: { color: bg }, rectRadius: 0.05 });
+      slide.addText(m.label, { x, y: y + 0.05, w: w - 0.12, h: 0.2, fontSize: 7, bold: true, color: lc, align: 'center' });
+      slide.addText(m.value, { x, y: y + 0.27, w: w - 0.12, h: 0.35, fontSize: 15, bold: true, color: vc, align: 'center' });
     });
+  }
+
+  // ── Dynamic data helpers (use window.reportData if Excel was loaded) ──
+  const rd = window.reportData;
+  function dynMetrics(key, fallback) {
+    if (rd && rd[key] && rd[key].metrics) return rd[key].metrics;
+    if (rd && rd.releases && rd.releases[key] && rd.releases[key].metrics) return rd.releases[key].metrics;
+    return fallback;
+  }
+  function dynRows(key, fallback) {
+    if (rd && rd[key] && rd[key].tableRows) return rd[key].tableRows;
+    if (rd && rd.releases && rd.releases[key] && rd.releases[key].tableRows) return rd.releases[key].tableRows;
+    return fallback;
+  }
+  // Map release key: "2026R1" matches rd.releases key
+  function releaseKey(label) {
+    if (!rd || !rd.releases) return null;
+    return rd.releaseOrder.find(k => rd.releases[k].label === label) || null;
   }
 
   function cellColor(v, isFirst, isLast) {
@@ -155,39 +210,40 @@ function downloadPptx() {
   // ── Slide 1: Summary ──
   const s1 = pptx.addSlide();
   addHeader(s1, 'Executive Summary', 'Consolidated results across R1 + R2 + R3');
-  addMetrics(s1, [
-    { label: 'Total Estimated', value: '6,773.3h' },
-    { label: 'Total Spent', value: '7,099.5h' },
-    { label: 'Deviation', value: '-326.2h' },
-    { label: 'Saving (raw)', value: '-5%', hi: true },
+  addMetrics(s1, dynMetrics('summary', [
+    { label: 'Total Estimated',     value: '6,773.3h' },
+    { label: 'Total Spent',         value: '7,099.5h' },
+    { label: 'Deviation',           value: '-326.2h' },
+    { label: 'Saving (raw)',        value: '-5%',  hi: true, negative: true },
     { label: 'Saving excl. UAT R1', value: '+27%', hi: true }
-  ], 0.82);
+  ]), 0.82);
   addTable(s1,
     ['Release', 'Estimated (h)', 'Spent (h)', 'Deviation (h)', '% Saving'],
-    [
+    dynRows('summary', [
       ['R1 – Completed (raw)',          '1,515.1', '4,192.0', '-2,676.9', '-177%'],
       ['R1 – Completed (excl. UAT R1)', '1,515.1', '2,072.0', '-556.9',   '-37%'],
       ['R2 – Completed',                '2,129.1', '1,629.0', '+500.1',   '+23%'],
       ['R3 – Completed',                '3,129.2', '1,278.5', '+1,850.7', '+59%']
-    ],
+    ]),
     1.7,
     'R3 completed April 2026 \u00B7 Best performing release at +59% \u00B7 Excl. UAT R1, overall saving across all releases is +27%.'
   );
   addFooter(s1, 1);
 
   // ── Slide 2: R1 ──
-  const s2 = pptx.addSlide();
+  const s2    = pptx.addSlide();
+  const r1Key = releaseKey('R1');
   addHeader(s2, 'R1 — Deep Dive \u00B7 Lessons Learned', 'Completed \u00B7 16 Dec 2025 \u2013 31 Jan 2026 \u00B7 UAT R1 included \u00B7 All estimates use x4 factor');
-  addMetrics(s2, [
-    { label: 'Total Estimated',   value: '1,515.1h' },
-    { label: 'Total Spent (raw)', value: '4,192.0h' },
+  addMetrics(s2, dynMetrics(r1Key, [
+    { label: 'Total Estimated',    value: '1,515.1h' },
+    { label: 'Total Spent (raw)',  value: '4,192.0h' },
     { label: 'Spent excl. UAT R1', value: '2,072.0h' },
-    { label: 'Saving excl. UAT', value: '-37%', hi: true },
+    { label: 'Saving excl. UAT',   value: '-37%', hi: true, negative: true },
     { label: 'UAT R1 Total Hours', value: '2,120.0h', hi: true }
-  ], 0.82);
+  ]), 0.82);
   addTable(s2,
     ['Area', 'Estimated (h)', 'Spent (h)', 'Deviation (h)', '% Saving'],
-    [
+    dynRows(r1Key, [
       ['Analysis & DF', '151.5', '119.5',   '+32.0',    '+21%'],
       ['DT / Const',    '757.5', '3,192.0', '-2,434.5', '-321%'],
       ['Testing',       '530.3', '404.0',   '+126.3',   '+24%'],
@@ -195,7 +251,7 @@ function downloadPptx() {
       ['Production',    '75.75', '42.0',    '+33.75',   '+45%'],
       ['Management',    '0',     '434.5',   '-434.5',   '—'],
       ['TOTAL',         '1,515.1', '4,192.0', '-2,676.9', '-177% raw / -37% excl. UAT']
-    ],
+    ]),
     1.7,
     null
   );
@@ -214,17 +270,18 @@ function downloadPptx() {
   addFooter(s2, 2);
 
   // ── Slide 3: R2 ──
-  const s3 = pptx.addSlide();
+  const s3    = pptx.addSlide();
+  const r2Key = releaseKey('R2');
   addHeader(s3, 'R2 — Deep Dive \u00B7 Efficiency Gains', 'Completed \u00B7 1 Feb \u2013 16 Feb 2026 \u00B7 Technical debt resolved \u00B7 Strongest DT/Const improvement');
-  addMetrics(s3, [
+  addMetrics(s3, dynMetrics(r2Key, [
     { label: 'Total Estimated', value: '2,129.1h' },
     { label: 'Total Spent',     value: '1,629.0h' },
     { label: 'Deviation',       value: '+500.1h' },
     { label: '% Saving',        value: '+23%', hi: true }
-  ], 0.82);
+  ]), 0.82);
   addTable(s3,
     ['Area', 'Estimated (h)', 'Spent (h)', 'Deviation (h)', '% Saving'],
-    [
+    dynRows(r2Key, [
       ['Analysis & DF', '220.5',   '215.5', '+5.0',   '+2%'],
       ['DT / Const',    '1,026.5', '498.0', '+528.5', '+51%'],
       ['Testing',       '771.8',   '661.5', '+110.3', '+14%'],
@@ -232,7 +289,7 @@ function downloadPptx() {
       ['Production',    '110.25',  '88.0',  '+22.25', '+20%'],
       ['Management',    '0',       '166.0', '-166.0', '—'],
       ['TOTAL',         '2,129.1', '1,629.0', '+500.1', '+23%']
-    ],
+    ]),
     1.7,
     null
   );
@@ -248,18 +305,19 @@ function downloadPptx() {
   addFooter(s3, 3);
 
   // ── Slide 4: R3 ──
-  const s4 = pptx.addSlide();
+  const s4    = pptx.addSlide();
+  const r3Key = releaseKey('R3');
   addHeader(s4, 'R3 — Deep Dive \u00B7 Completed', 'Completed \u00B7 17 Feb \u2013 6 Apr 2026 \u00B7 April 2026 extraction');
-  addMetrics(s4, [
+  addMetrics(s4, dynMetrics(r3Key, [
     { label: 'Total Estimated', value: '3,129.2h' },
     { label: 'Total Spent',     value: '1,278.5h' },
     { label: 'Hours Saved',     value: '1,850.7h' },
     { label: 'Overall Saving',  value: '+59%', hi: true },
     { label: 'DT/Const Saving', value: '+56%', hi: true }
-  ], 0.82);
+  ]), 0.82);
   addTable(s4,
     ['Area', 'Estimated (h)', 'Spent (h)', 'Deviation (h)', '% Saving'],
-    [
+    dynRows(r3Key, [
       ['Analysis & DF', '494.8',   '388.0',   '+106.8',   '+22%'],
       ['DT / Const',    '655.2',   '289.5',   '+365.7',   '+56%'],
       ['Testing',       '989.6',   '249.5',   '+740.1',   '+75%'],
@@ -267,7 +325,7 @@ function downloadPptx() {
       ['Production',    '494.8',   '23.0',    '+471.8',   '+95%'],
       ['Management',    '494.8',   '328.5',   '+166.3',   '+34%'],
       ['TOTAL',         '3,129.2', '1,278.5', '+1,850.7', '+59%']
-    ],
+    ]),
     1.7,
     null
   );
@@ -288,16 +346,16 @@ function downloadPptx() {
   // ── Slide 5: Consolidated ──
   const s5 = pptx.addSlide();
   addHeader(s5, 'R1 + R2 + R3 — Consolidated View', 'Testing & Production consistently outperform \u00B7 UAT R1 is the main cost driver');
-  addMetrics(s5, [
+  addMetrics(s5, dynMetrics('consolidated', [
     { label: 'Total Estimated',    value: '6,773.3h' },
     { label: 'Total Spent',        value: '7,099.5h' },
     { label: 'Testing Saving',     value: '+43%',  hi: true },
     { label: 'Production Saving',  value: '+78%',  hi: true },
-    { label: 'Mgmt Over Budget',   value: '88%',   hi: true }
-  ], 0.82);
+    { label: 'Mgmt Over Budget',   value: '88%',   hi: true, negative: true }
+  ]), 0.82);
   addTable(s5,
     ['Area', 'Estimated (h)', 'Spent (h)', 'Deviation (h)', '% Saving', '% excl. UAT R1'],
-    [
+    dynRows('consolidated', [
       ['Analysis & DF', '866.8',   '723.0',   '+143.8',   '+17%',    '\u2014'],
       ['DT / Const',    '2,439.2', '3,979.5', '-1,540.3', '-63%',    '+24%'],
       ['Testing',       '2,291.7', '1,315.0', '+976.7',   '+43%',    '\u2014'],
@@ -305,7 +363,7 @@ function downloadPptx() {
       ['Production',    '680.8',   '153.0',   '+527.8',   '+78%',    '\u2014'],
       ['Management',    '494.8',   '929.0',   '-434.2',   '-88%',    '\u2014'],
       ['TOTAL',         '6,773.3', '7,099.5', '-326.2',   '-5% raw', '+27% excl. UAT R1']
-    ],
+    ]),
     1.7,
     null
   );
@@ -322,15 +380,16 @@ function downloadPptx() {
 
   // ── Slide 6: Velocity Trend ──
   const s6 = pptx.addSlide();
+  const velData = rd && rd.velocity;
   addHeader(s6, 'Velocity Trend Analysis', 'DT/Const improving R1\u2192R2\u2192R3 \u00B7 Testing & Production consistently efficient');
-  addMetrics(s6, [
+  addMetrics(s6, velData ? velData.metrics : [
     { label: 'DT/Const Improvement', value: 'R1\u2192R3', hi: true },
     { label: 'Testing R3 Saving',    value: '+75%', hi: true },
     { label: 'Production R3 Saving', value: '+95%', hi: true }
   ], 0.82);
   addTable(s6,
-    ['Area', 'R1 Utilization', 'R2 Utilization', 'R3 Utilization', 'Insight'],
-    [
+    velData ? velData.headers : ['Area', 'R1 Utilization', 'R2 Utilization', 'R3 Utilization', 'Insight'],
+    velData ? velData.tableRows : [
       ['DT / Const',    '141%',       '49%',  '44%',  'Consistent improvement \u2014 debt resolved, team maturing'],
       ['Testing',       '76%',        '86%',  '25%',  'R3 partial \u2014 strong saving on completed work'],
       ['Analysis & DF', '79%',        '98%',  '78%',  'Recovering from R2 \u2014 scope well estimated in R3'],
